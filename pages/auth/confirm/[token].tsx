@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,11 +14,7 @@ const ConfirmPage = ({ token }: any) => {
     messageConfirmed: '',
   });
 
-  useEffect(() => {
-    confirm();
-  }, []);
-
-  const confirm = async () => {
+  const confirm = useCallback(async () => {
     const { hasError, message } = await confirmAccount(token);
     if (hasError) {
       return setMessage({
@@ -31,7 +27,11 @@ const ConfirmPage = ({ token }: any) => {
       isConfirmed: true,
       messageConfirmed: message,
     });
-  };
+  }, [token]);
+
+  useEffect(() => {
+    confirm();
+  }, [confirm]);
 
   return (
     <div className={styles.confirm__container}>

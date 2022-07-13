@@ -1,15 +1,15 @@
+import React, { FC, useState } from 'react';
+import { useUpdateAtom } from 'jotai/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { FC, useState } from 'react';
 import Swal from 'sweetalert2';
 
 import { TPublication } from 'types';
 import { datePublication } from 'utils/dateInfo';
 import { usePublications, useUser } from 'hooks';
+import { stateModalPublication } from 'store/stateModalPublication';
 
 import styles from 'styles/home/Home.module.css';
-import { useUpdateAtom } from 'jotai/utils';
-import { stateModalPublication } from 'store/stateModalPublication';
 
 type Props = {
   publication: TPublication | any;
@@ -25,6 +25,7 @@ const Publication: FC<Props> = ({ publication }) => {
     return null;
   }
 
+  console.log(publication);
   const onDelete = async (id: any) => {
     Swal.fire({
       title: '¿Seguro que quieres eliminar tu publicación?',
@@ -86,16 +87,15 @@ const Publication: FC<Props> = ({ publication }) => {
                 <ul className={styles.publication__options}>
                   <li
                     onClick={() => {
-                        setIsVisibleOptions(false)
-                        setShowModalEditPublication({
-                          isVisible: true,
-                          id: publication._id,
-                          description: publication.description,
-                          state: publication.state,
-                          images: publication.images[0]
-                        })
-                      }
-                    }
+                      setIsVisibleOptions(false);
+                      setShowModalEditPublication({
+                        isVisible: true,
+                        id: publication._id,
+                        description: publication.description,
+                        state: publication.state,
+                        images: publication.images[0],
+                      });
+                    }}
                   >
                     <span>Editar</span> <i className="fa-solid fa-pen-to-square"></i>
                   </li>
@@ -111,6 +111,39 @@ const Publication: FC<Props> = ({ publication }) => {
           <p>{publication.description}</p>
           <div className={styles['publication__description-img']}>
             <Image src={publication.images[0]} width={780} height={400} objectFit="contain" alt="profile" />
+          </div>
+          <div className={styles['publication__comments']}>
+            <div className={styles['publication__comments-buttons']}>
+              <button>
+                <i className="fa-regular fa-heart"></i>
+                <span>Me gusta</span>
+              </button>
+              <button>
+                <i className="fa-regular fa-message"></i>
+                <span>Comentar</span>
+              </button>
+              <button>
+                <i className="fa-solid fa-share"></i>
+                <span>Compartir</span>
+              </button>
+            </div>
+            {/* //todo: Arreglar */}
+            <div className={styles['publication__comments-views']}>
+              <Image src={user.profile} width={35} height={35} alt="profile" />
+              <input type="text" placeholder="Escribe un comentario..." maxLength={250} />
+            </div>
+            <div className={styles['publication__comments-users']}>
+              {publication.comments.map((comment: any) => (
+                <div className={styles['publication__comment-user']} key={comment}>
+                  <Image src={user.profile} width={35} height={35} alt="profile" />
+                  <div className={styles['comment']}>
+                    <p>{user.fullname}</p>
+                    {/* <textarea disabled={true} defaultValue={comment}></textarea> */}
+                    <p>{comment}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

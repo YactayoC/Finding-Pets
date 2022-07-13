@@ -179,7 +179,7 @@
   border: 1px solid var(--color-button-hover);
 }
 
-.form__group input[type="file"] {
+.form__group input[type='file'] {
   display: none;
 }
 
@@ -201,6 +201,8 @@
   padding-block: 0.5rem;
   outline: none;
   margin-bottom: 1rem;
+  padding-block: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .form__group select option:nth-child(2) {

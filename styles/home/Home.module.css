@@ -423,6 +423,123 @@
   transform: scale(1.1) rotate(1deg);
 }
 
+/* Comments */
+.publication__comments {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.publication__comments-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  gap: 0.2rem;
+  border-block: 1px solid var(--secondary-color-text);
+  padding-block: 0.2rem;
+}
+
+.publication__comments-buttons button {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: var(--secondary-color-text);
+  padding-block: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.publication__comments-buttons button:hover {
+  background-color: #58595a;
+  color: #fff;
+}
+
+.publication__comments-buttons button i {
+  font-size: 1rem;
+}
+
+.publication__comments-views {
+  display: flex;
+  padding-inline: 5%;
+  gap: 0.7rem;
+  width: 100%;
+}
+
+.publication__comments-views img {
+  border-radius: 50%;
+}
+
+.publication__comments-views input {
+  outline: none;
+  border: none;
+  background-color: var(--color-gray);
+  border-radius: 10px;
+  width: 90%;
+  padding-left: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.publication__comments-users {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 5%;
+  gap: 0.8rem;
+}
+
+.publication__comment-user {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+
+
+.publication__comment-user img {
+  border-radius: 50%;
+}
+
+.comment {
+  outline: none;
+  border: none;
+  background-color: var(--color-gray);
+  border-radius: 10px;
+  width: 90%;
+  padding-block: 0.6rem;
+  padding-inline: 0.8rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.comment p:nth-child(1) {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.comment p:nth-child(2) {
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+/* .comment textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  font-size: 0.9rem;
+  font-family: "Roboto";
+}
+
+.comment textarea::-webkit-scrollbar {
+  width: 8px; 
+  height: 8px; 
+  display: flex; 
+}
+.comment textarea::-webkit-scrollbar-thumb {
+  background: var(--secondary-color-text);
+  border-radius: 4px;
+} */
+
 /* Random */
 .random {
   display: none;

@@ -4,7 +4,7 @@ import type { TComment } from 'types';
 
 const commentSchema = new Schema(
   {
-    comments: [
+    comment: [
       {
         type: String,
       },
