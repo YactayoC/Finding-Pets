@@ -1,0 +1,251 @@
+.profile__layout {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;
+}
+
+.hero {
+  display: flex;
+  background: url(https://res.cloudinary.com/sebas-2001-yac/image/upload/v1655599321/finding_pets/user/descarga_dgwpjn.jpg);
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  height: 30rem;
+  margin: 0 auto;
+  align-items: center;
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    display: flex;
+    background: url(https://res.cloudinary.com/sebas-2001-yac/image/upload/v1655599321/finding_pets/user/descarga_dgwpjn.jpg);
+    background-size: cover;
+    background-position: bottom;
+    width: 80%;
+    height: 30rem;
+    margin: 0 auto;
+    align-items: center;
+    position: relative;
+  }
+}
+
+.data {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 10rem;
+  bottom: -9rem;
+  left: 2rem;
+}
+
+.data img {
+  border-radius: 50%;
+}
+
+.option h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.option button {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--color-button);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+.option button:hover {
+  background-color: var(--color-button-hover);
+}
+
+/* View */
+
+.view {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 2rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .view {
+    display: grid;
+    grid-template-columns: 33% auto;
+    gap: 2rem;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* Details */
+.details {
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.details__data {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0;
+}
+
+.details__data li {
+  display: flex;
+  gap: 0.8rem;
+  list-style: none;
+  align-items: center;
+}
+
+.details__data li i {
+  color: var(--color-link-blue);
+}
+
+/* Modal Edit */
+.profile__edit {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+  background: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
+  transition: all 0.3s ease-in-out;
+  top: 0;
+  left: 0;
+}
+
+.form {
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  position: relative;
+}
+
+.form h2 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.form i {
+  position: absolute;
+  color: var(--color-button-remove);
+  font-size: 1.5rem;
+  right: 2rem;
+  cursor: pointer;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.form__group i {
+  color: var(--color-button);
+  position: unset;
+  margin: 0 auto;
+  font-size: 2rem;
+  border: 1px solid var(--color-button);
+  border-radius: 50%;
+  padding: 2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.form__group i:hover {
+  color: var(--color-button-hover);
+  border: 1px solid var(--color-button-hover);
+}
+
+.form__group input[type="file"] {
+  display: none;
+}
+
+.form__group label {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.form__group input {
+  border: 1px solid var(--secondary-color-text);
+  padding: 1rem 1rem;
+  border-radius: 8px;
+  outline: none;
+}
+
+.form__group select {
+  border-radius: 10px;
+  padding-block: 0.5rem;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+.form__group select option:nth-child(2) {
+  color: #e5de13;
+}
+
+.form__group select option:nth-child(3) {
+  color: #10c110;
+}
+
+.form__group textarea {
+  border: 1px solid var(--color-gray);
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  outline: none;
+  resize: none;
+  width: 100%;
+  height: 10rem;
+}
+
+.form__submit {
+  background-color: var(--color-button);
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  padding: 0.6rem 2rem;
+  width: 60%;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.form__submit:hover {
+  background-color: var(--color-button-hover);
+}
+
+.form__submit:disabled {
+  background-color: var(--color-button-hover);
+  cursor: wait;
+}
+
+.form__error {
+  color: var(--color-error);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}

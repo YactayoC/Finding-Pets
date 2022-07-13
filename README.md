@@ -1,8 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Finding Pets 🐕
 
-## Getting Started
+A project focused on the search for lost pets through publications and locality filters.
 
-First, run the development server:
+## Getting Started 🚀
+
+First we install the necessary libraries:
+
+```bash
+npm i
+# or
+yarn i
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -12,23 +22,17 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Preview 📷
+![image](https://user-images.githubusercontent.com/89726167/175652959-d2db4d98-74e8-4221-aee1-07537f9c6205.png)
+![image](https://user-images.githubusercontent.com/89726167/175652537-14eb7065-2806-464d-be8b-df43ab6fdbc2.png)
+![image](https://user-images.githubusercontent.com/89726167/175652606-77038da4-c5f1-4870-849d-966391b6eb8c.png)
+![image](https://user-images.githubusercontent.com/89726167/175652706-50a3f708-a6ba-4cf2-b600-a1e46604754b.png)
+![image](https://user-images.githubusercontent.com/89726167/175652811-1178aebc-e6f6-4a9d-b689-40a0a21caf90.png)
+![image](https://user-images.githubusercontent.com/89726167/175652845-03ee3326-90c8-4b27-95b3-be523555ae60.png)
+![image](https://user-images.githubusercontent.com/89726167/175654242-4a9a862d-a00b-4ad2-9fba-a41013c6fece.png)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Authors ✒️
+- **Sebastián Yactayo** - _aporte_ - [YactayoC](https://github.com/YactayoC)
+- **Sebastián Chaquila** - _aporte_ - [CodeSCH](https://github.com/CodeSCH)
+- **Kennet de la Cruz** - _aporte_ - [KennethHernan](https://github.com/KennethHernan)
+- **Cruces Leonardo** - _aporte_ - [It's Me Leandro](https://github.com/ItsMeLeonardo)

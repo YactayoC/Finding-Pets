@@ -1,0 +1,12 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loader h1 {
+    color: #5fd9f2;
+    font-weight: 700;
+}

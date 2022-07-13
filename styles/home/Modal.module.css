@@ -1,0 +1,63 @@
+/* Modal delete */
+.modal__delete {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background: #000000ad;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal__content {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  width: 30%;
+  border-radius: 20px;
+}
+
+.modal__text {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.modal__buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.modal__buttons button {
+  border: none;
+  padding: 0.5rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.modal__buttons button:nth-child(1) {
+  background-color: var(--secondary-color-text);
+  color: var(--primary-color-text);
+}
+
+.modal__buttons button:nth-child(1):hover {
+  background-color: var(--color-gray);
+  color: var(--primary-color-text);
+}
+
+.modal__buttons button:nth-child(2) {
+  background-color: var(--color-button-remove);
+  color: #fff;
+}
+
+.modal__buttons button:nth-child(2):hover {
+  background-color: var(--color-button-remove-hover);
+  color: #fff;
+}

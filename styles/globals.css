@@ -1,9 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+:root {
+  --primary-color-text: #241e38;
+  --secondary-color-text: #9e98b3;
+  --color-link-blue: #00bcd4;
+  --color-button: #43beeb;
+  --color-button-hover: #75d0f1;
+  --color-button-remove: #fd0f1b;
+  --color-button-remove-hover: #f77e7e;
+  --color-error: #f44336;
+  --color-gray: #f0eef6;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0eef6;
+  color: var(--primary-color-text);
 }
 
 a {
@@ -13,4 +28,37 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+  width: 8px; 
+  height: 8px; 
+  display: flex; 
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--color-button);
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-button-hover);
+}
+
+body::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-button-hover);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--color-gray);
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-track:hover,
+body::-webkit-scrollbar-track:active {
+background: #d4d4d4;
+}
+
+.swal2-container {
+  z-index: 99999 !important;
 }

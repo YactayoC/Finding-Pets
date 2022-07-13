@@ -1,0 +1,125 @@
+.nav {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding-block: 0.5rem;
+  width: 100%;
+  z-index: 999;
+}
+
+.nav__container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1400px;
+  width: 90%;
+}
+
+/* Logo */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* Search */
+.nav__search {
+  background-color: #f0eef6;
+  border-radius: 10px;
+}
+
+.nav__search input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  width: 35vw;
+}
+
+.nav__search i {
+  font-size: 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  color: var(--color-button);
+}
+
+@media (min-width: 468px) {
+  .nav__search {
+    background-color: var(--color-gray);
+    border-radius: 10px;
+  }
+}
+
+/* Profile */
+.nav__profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+}
+
+.nav__profile-getProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+}
+
+.nav__profile-getProfile > i {
+  color: var(--color-button);
+  font-size: 1.2rem;
+}
+
+.nav__profile-getProfile:hover > .nav__profile-logout {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.nav__profile-image {
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.nav__profile-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: 1rem;
+  border-radius: 10px;
+  opacity: 0;
+  position: absolute;
+  bottom: -2.5rem;
+  right: -10px;
+  cursor: pointer;
+  color: var(--color-error);
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+  pointer-events: none;
+}
+
+@media (min-width: 468px) {
+  .nav__profile-logout {
+    right: unset;
+  }
+}
+
+
+.nav__profile-logout p {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.nav__profile-logout:hover {
+  background-color: var(--color-gray);
+  opacity: 1;
+  pointer-events: visible;
+}
