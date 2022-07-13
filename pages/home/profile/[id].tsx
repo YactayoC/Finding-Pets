@@ -27,13 +27,13 @@ const ProfilePage = ({ userSSR }: any) => {
   }
 
   return (
-    <ProfileLayout title={`Perfil | ${userSSR?.fullname}`}>
+    <ProfileLayout title={`Perfil | ${user.user._id === userSSR._id ? user.user.fullname : userSSR?.fullname}`}>
       <div className={styles.profile}>
         <div className={styles.hero}>
           <div className={styles.data}>
-            {isLoading ? <LoaderProfile /> : <Image src={user.user?.profile} width={180} height={180} alt="profile" />}
+            {isLoading ? <LoaderProfile /> : <Image src={user.user._id === userSSR._id ? user.user.profile : userSSR?.profile} width={180} height={180} alt="profile" />}
             <div className={styles.option}>
-              <h2>{user.user?.fullname}</h2>
+              <h2>{user.user._id === userSSR._id ? user.user.fullname : userSSR?.fullname}</h2>
               {userSSR._id === user?.user?._id && (
                 <button onClick={() => setShowModalEditUser(true)}>
                   <i className="fa-solid fa-pen-to-square"></i>Editar Perfil
@@ -46,18 +46,19 @@ const ProfilePage = ({ userSSR }: any) => {
         <div className={styles.view}>
           <div className={styles.details}>
             <h2>Detalles</h2>
+            
             <ul className={styles.details__data}>
               <li>
                 <i className="fa-solid fa-user"></i>
-                {user.user.fullname}
+                {user.user._id === userSSR._id ? user.user.fullname : userSSR?.fullname }
               </li>
               <li>
                 <i className="fa-solid fa-at"></i>
-                {user.user.email}
+                {user.user._id === userSSR._id ? user.user.email : userSSR?.email}
               </li>
               <li>
                 <i className="fa-solid fa-phone"></i>
-                {user.user.phone}
+                {user.user._id === userSSR._id ? user.user.phone : userSSR?.phone}
               </li>
               <li>
                 <i className="fa-solid fa-bullhorn"></i> Se unió {dateUser(userSSR?.createdAt)}
