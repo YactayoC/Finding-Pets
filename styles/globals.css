@@ -31,9 +31,9 @@ a {
 }
 
 body::-webkit-scrollbar {
-  width: 8px; 
-  height: 8px; 
-  display: flex; 
+  width: 8px;
+  height: 8px;
+  display: flex;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -56,9 +56,19 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-track:hover,
 body::-webkit-scrollbar-track:active {
-background: #d4d4d4;
+  background: #d4d4d4;
 }
 
 .swal2-container {
   z-index: 99999 !important;
+}
+
+textarea::-webkit-scrollbar {
+  width: 6px;
+  height: 5px;
+  display: flex;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: var(--secondary-color-text);
+  border-radius: 4px;
 }

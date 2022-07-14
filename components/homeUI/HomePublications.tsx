@@ -72,10 +72,10 @@ const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR })
               <div className={styles.textarea}>
                 <textarea
                   placeholder="¿Que tienes en mente?"
-                  maxLength={250}
                   {...register('description', {
                     required: 'Este campo es requerido',
                     minLength: { value: 10, message: 'Mínimo 10 caracteres' },
+                    maxLength: { value: 250, message: "Maximo 250 caracteres"}
                   })}
                 ></textarea>
               </div>

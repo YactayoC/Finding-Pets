@@ -90,10 +90,10 @@ const ModalEditPublication = () => {
           <label htmlFor="description">Descripcion</label>
           <textarea
             placeholder="¿Que tienes en mente?"
-            maxLength={250}
             {...register('description', {
               required: 'Este campo es requerido',
               minLength: { value: 10, message: 'Mínimo 10 caracteres' },
+              maxLength: { value: 250, message: 'Máximo 250 caracteres'}
             })}
           ></textarea>
           {errors.description && <p className={styles.form__error}>{errors.description.message}</p>}

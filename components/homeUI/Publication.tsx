@@ -10,22 +10,40 @@ import { usePublications, useUser } from 'hooks';
 import { stateModalPublication } from 'store/stateModalPublication';
 
 import styles from 'styles/home/Home.module.css';
+import { useForm } from 'react-hook-form';
+import { useComments } from 'hooks/useComment';
 
 type Props = {
   publication: TPublication | any;
 };
 
+type AddComment = {
+  idPublication: string;
+  comment: string;
+};
+
 const Publication: FC<Props> = ({ publication }) => {
-  const { user } = useUser();
+  const { addComment } = useComments();
   const [isVisibleOptions, setIsVisibleOptions] = useState<boolean>(false);
   const setShowModalEditPublication = useUpdateAtom(stateModalPublication);
   const { deletePublication } = usePublications();
+  const { user } = useUser();
+  const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<AddComment>({
+    defaultValues: {
+      idPublication: publication?._id,
+    }
+  });
 
   if (!user) {
     return null;
   }
 
-  console.log(publication);
+  const onComment = async({ idPublication, comment }: AddComment) => {
+    const {message} = await addComment(idPublication, comment)
+    console.log(watch())
+    reset();
+  }
+
   const onDelete = async (id: any) => {
     Swal.fire({
       title: '¿Seguro que quieres eliminar tu publicación?',
@@ -52,6 +70,8 @@ const Publication: FC<Props> = ({ publication }) => {
       }
     });
   };
+
+
 
   return (
     <>
@@ -128,17 +148,22 @@ const Publication: FC<Props> = ({ publication }) => {
               </button>
             </div>
             {/* //todo: Arreglar */}
-            <div className={styles['publication__comments-views']}>
+            <form className={styles['publication__comments-views']} onSubmit={ handleSubmit(onComment)}>
               <Image src={user.profile} width={35} height={35} alt="profile" />
-              <input type="text" placeholder="Escribe un comentario..." maxLength={250} />
-            </div>
+              <textarea placeholder="Escribe un comentario..." maxLength={250} 
+              {...register('comment', {
+              required: 'Este campo es requerido',
+              minLength: { value: 5, message: 'Mínimo 5 caracteres' },
+              maxLength: { value: 250, message: 'Máximo 250 caracteres'}
+            })} ></textarea>
+              <input type="submit" />
+            </form>
             <div className={styles['publication__comments-users']}>
               {publication.comments.map((comment: any) => (
                 <div className={styles['publication__comment-user']} key={comment}>
                   <Image src={user.profile} width={35} height={35} alt="profile" />
                   <div className={styles['comment']}>
                     <p>{user.fullname}</p>
-                    {/* <textarea disabled={true} defaultValue={comment}></textarea> */}
                     <p>{comment}</p>
                   </div>
                 </div>
