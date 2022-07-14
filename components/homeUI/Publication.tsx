@@ -29,6 +29,7 @@ const Publication: FC<Props> = ({ publication }) => {
   const [isVisibleOptions, setIsVisibleOptions] = useState<boolean>(false);
   const setShowModalEditPublication = useUpdateAtom(stateModalPublication);
   const { deletePublication } = usePublications();
+  const [showComments, setShowComments] = useState(false);
   const { user } = useUser();
   const {
     register,
@@ -147,7 +148,7 @@ const Publication: FC<Props> = ({ publication }) => {
                 <i className="fa-regular fa-heart"></i>
                 <span>Me gusta</span>
               </button>
-              <button>
+              <button onClick={() => setShowComments(!showComments)}>
                 <i className="fa-regular fa-message"></i>
                 <span>Comentar</span>
               </button>
@@ -156,30 +157,44 @@ const Publication: FC<Props> = ({ publication }) => {
                 <span>Compartir</span>
               </button>
             </div>
-            {/* Form */}
-            <form className={styles['publication__comments-views']} onSubmit={handleSubmit(onComment)}>
-              <Image src={user.profile} width={35} height={35} alt="profile" />
-              <TextareaAutosize maxLength={250} minRows={3} placeholder="Escribe un comentario..."
-                {...register('comment', {
-                  required: 'Este campo es requerido',
-                  minLength: { value: 5, message: 'Mínimo 5 caracteres' },
-                  maxLength: { value: 250, message: 'Máximo 250 caracteres' },
-                })}/>
-              {errors.comment && <p className={styles.form__error}>{errors.comment.message}</p>}
-              <button type="submit"><i className="fa-solid fa-paper-plane"></i></button>
-            </form>
-            {/* EndForm */}
-            <div className={styles['publication__comments-users']}>
-              {publication.comments.map((commentUser: any) => (
-                <div className={styles['publication__comment-user']} key={commentUser._id}>
-                  <Image src={commentUser.user.profile} width={35} height={35} alt="profile" />
-                  <div className={styles['comment']}>
-                    <p>{commentUser.user.fullname}</p>
-                    <TextareaAutosize readOnly value={commentUser.comment}/>
-                  </div>
+
+            {showComments && (
+              <>
+                <form className={styles['publication__comments-views']} onSubmit={handleSubmit(onComment)}>
+                  <Image src={user.profile} width={35} height={35} alt="profile" />
+                  <TextareaAutosize
+                    maxLength={250}
+                    minRows={3}
+                    placeholder="Escribe un comentario..."
+                    {...register('comment', {
+                      required: 'Este campo es requerido',
+                      minLength: { value: 5, message: 'Mínimo 5 caracteres' },
+                      maxLength: { value: 250, message: 'Máximo 250 caracteres' },
+                    })}
+                  />
+                  {errors.comment && <p className={styles.form__error}>{errors.comment.message}</p>}
+                  <button type="submit">
+                    <i className="fa-solid fa-paper-plane"></i>
+                  </button>
+                </form>
+
+                <div className={styles['publication__comments-users']}>
+                  {publication.comments.map((commentUser: any) => (
+                    <div className={styles['publication__comment-user']} key={commentUser._id}>
+                      <Link href={`/home/profile/${commentUser.user._id}`}>
+                        <a>
+                          <Image src={commentUser.user.profile} width={35} height={35} alt="profile" />
+                        </a>
+                      </Link>
+                      <div className={styles['comment']}>
+                        <p>{commentUser.user.fullname}</p>
+                        <TextareaAutosize readOnly value={commentUser.comment} />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>

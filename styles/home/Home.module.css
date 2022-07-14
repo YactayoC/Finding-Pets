@@ -489,25 +489,31 @@
   max-height: 5rem;
 }
 
-.publication__comments-views button {
+.publication__comments-views button{
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 9%;
+  pointer-events: none;
+}
+
+.publication__comments-views button i{
+  pointer-events: all;
   color: #fff;
   background-color: var(--color-button);
   border: none;
   border-radius: 50%;
-  padding-block: 0.5rem;
-  padding-inline: 0.6rem;
-  position: absolute;
-  top: 1rem;
-  right: 9%;
-  margin-left: 10rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  padding-block: 0.5rem;
+  padding-inline: 0.6rem;
 }
 
-.publication__comments-views button:hover {
+.publication__comments-views button i:hover {
   background-color: var(--color-button-hover);
 }
 
@@ -528,6 +534,7 @@
 
 .publication__comment-user img {
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .comment {
