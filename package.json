@@ -21,6 +21,7 @@
     "react-content-loader": "^6.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.33.1",
+    "react-textarea-autosize": "^8.3.4",
     "sweetalert2": "^11.4.20",
     "swr": "^1.3.0",
     "validator": "^13.7.0"

@@ -71,6 +71,7 @@ const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR })
             <form className={styles.publication__form} onSubmit={handleSubmit(onPublic)}>
               <div className={styles.textarea}>
                 <textarea
+                  maxLength={250}
                   placeholder="¿Que tienes en mente?"
                   {...register('description', {
                     required: 'Este campo es requerido',

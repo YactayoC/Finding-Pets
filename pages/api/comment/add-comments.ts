@@ -1,5 +1,5 @@
 import dbConnect from 'database/db';
-import { Publication } from 'models';
+import { Publication, User } from 'models';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 type Data = {
@@ -21,14 +21,24 @@ const addComment = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { idUser, comment } = req.body;
 
   await dbConnect();
-  const publication = await Publication.findById(idPublication);
-
-  if (!publication) {
-    return res.status(500).json({ message: 'Hubo algun problema en la publicación' });
-  }
 
   try {
-    publication.comments?.push(comment);
+    const publication = await Publication.findById(idPublication);
+    const user = await User.findById(idUser);
+
+    if (!publication) {
+      return res.status(500).json({ message: 'Hubo algun problema en la publicación' });
+    }
+
+    if (!user) {
+      return res.status(500).json({ message: 'Hubo algun problema en la publicación' });
+    }
+
+    publication.comments?.push({
+      comment: comment,
+      user: idUser,
+    })
+
     await publication.save({ validateBeforeSave: true });
     return res.status(201).json({ message: 'Publicación realizada' });
   } catch (error) {

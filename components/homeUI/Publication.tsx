@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { useUpdateAtom } from 'jotai/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import TextareaAutosize from 'react-textarea-autosize';
 import Swal from 'sweetalert2';
 
 import { TPublication } from 'types';
@@ -19,6 +20,7 @@ type Props = {
 
 type AddComment = {
   idPublication: string;
+  idUser: string;
   comment: string;
 };
 
@@ -28,21 +30,22 @@ const Publication: FC<Props> = ({ publication }) => {
   const setShowModalEditPublication = useUpdateAtom(stateModalPublication);
   const { deletePublication } = usePublications();
   const { user } = useUser();
-  const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<AddComment>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<AddComment>({
     defaultValues: {
       idPublication: publication?._id,
-    }
+      idUser: user?._id,
+    },
   });
 
-  if (!user) {
-    return null;
-  }
-
-  const onComment = async({ idPublication, comment }: AddComment) => {
-    const {message} = await addComment(idPublication, comment)
-    console.log(watch())
+  const onComment = async ({ idPublication, idUser, comment }: AddComment) => {
+    await addComment(idPublication, idUser, comment);
     reset();
-  }
+  };
 
   const onDelete = async (id: any) => {
     Swal.fire({
@@ -71,7 +74,13 @@ const Publication: FC<Props> = ({ publication }) => {
     });
   };
 
+  if (!user) {
+    return null;
+  }
 
+  // (publication.comments.map((commentUser: any) => {
+  //   console.log(commentUser._id)
+  // }))
 
   return (
     <>
@@ -147,24 +156,26 @@ const Publication: FC<Props> = ({ publication }) => {
                 <span>Compartir</span>
               </button>
             </div>
-            {/* //todo: Arreglar */}
-            <form className={styles['publication__comments-views']} onSubmit={ handleSubmit(onComment)}>
+            {/* Form */}
+            <form className={styles['publication__comments-views']} onSubmit={handleSubmit(onComment)}>
               <Image src={user.profile} width={35} height={35} alt="profile" />
-              <textarea placeholder="Escribe un comentario..." maxLength={250} 
-              {...register('comment', {
-              required: 'Este campo es requerido',
-              minLength: { value: 5, message: 'Mínimo 5 caracteres' },
-              maxLength: { value: 250, message: 'Máximo 250 caracteres'}
-            })} ></textarea>
-              <input type="submit" />
+              <TextareaAutosize maxLength={250} minRows={3} placeholder="Escribe un comentario..."
+                {...register('comment', {
+                  required: 'Este campo es requerido',
+                  minLength: { value: 5, message: 'Mínimo 5 caracteres' },
+                  maxLength: { value: 250, message: 'Máximo 250 caracteres' },
+                })}/>
+              {errors.comment && <p className={styles.form__error}>{errors.comment.message}</p>}
+              <button type="submit"><i className="fa-solid fa-paper-plane"></i></button>
             </form>
+            {/* EndForm */}
             <div className={styles['publication__comments-users']}>
-              {publication.comments.map((comment: any) => (
-                <div className={styles['publication__comment-user']} key={comment}>
-                  <Image src={user.profile} width={35} height={35} alt="profile" />
+              {publication.comments.map((commentUser: any) => (
+                <div className={styles['publication__comment-user']} key={commentUser._id}>
+                  <Image src={commentUser.user.profile} width={35} height={35} alt="profile" />
                   <div className={styles['comment']}>
-                    <p>{user.fullname}</p>
-                    <p>{comment}</p>
+                    <p>{commentUser.user.fullname}</p>
+                    <TextareaAutosize readOnly value={commentUser.comment}/>
                   </div>
                 </div>
               ))}

@@ -1,11 +1,13 @@
-import type { TComment } from './comment';
 import type { TUser } from './user';
 
 export type TPublication = {
   _id: string;
   description: string;
   images?: string[];
-  comments?: TComment[];
+  comments?: [{
+    comment: string;
+    user: string;
+  }],
   state: string;
   user: TUser;
 

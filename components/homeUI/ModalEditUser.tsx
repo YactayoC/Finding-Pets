@@ -74,7 +74,7 @@ const ModalEditUser = () => {
         </div>
 
         <div className={styles.form__group}>
-          <label htmlFor="email">Fullname</label>
+          <label htmlFor="fullname">Fullname</label>
           <input
             type="text"
             id="fullname"
@@ -88,9 +88,9 @@ const ModalEditUser = () => {
           {errors.fullname && <p className={styles.form__error}>{errors.fullname.message}</p>}
         </div>
         <div className={styles.form__group}>
-          <label htmlFor="email">Phone</label>
+          <label htmlFor="phone">Phone</label>
           <input
-            type="number"
+            type="tel"
             id="phone"
             placeholder="Ingresa tu número de teléfono"
             {...register('phone', {

@@ -1,7 +1,7 @@
 import findingPetsApi from 'axios/findingPetsApi';
 
-export const addCommentDB = async (idPublication: string, comment: string) => {
-  const { data } = await findingPetsApi.post(`/comment/add-comments?idPublication=${idPublication}`, { comment });
+export const addCommentDB = async (idPublication: string, idUser: string, comment: string) => {
+  const { data } = await findingPetsApi.post(`/comment/add-comments?idPublication=${idPublication}`, { idUser, comment });
   return data;
 };
 

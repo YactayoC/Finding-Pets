@@ -17,7 +17,16 @@ const publicationSchema = new Schema(
 
     comments: [
       {
-        type: String,
+        comment: {
+          type: String,
+          required: true,
+          ref: 'Comment',
+        },
+        user: {
+          type: Schema.Types.ObjectId,
+          required: true,
+          ref: 'User',
+        }
       },
     ],
 

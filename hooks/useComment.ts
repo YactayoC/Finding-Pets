@@ -8,9 +8,9 @@ type ResponseData = {
 
 export const useComments = () => {
 
-  const addComment = async (idPublication: string, comment: string): Promise<ResponseData> => {
+  const addComment = async (idPublication: string, idUer: string, comment: string): Promise<ResponseData> => {
     try {
-      const resp = await addCommentDB( idPublication, comment );
+      const resp = await addCommentDB( idPublication, idUer, comment );
       return { hasError: false, message: resp.message };
     } catch (error) {
       return { hasError: true, message: error.response.data.message };

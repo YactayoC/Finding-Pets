@@ -15,6 +15,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 }
 
 const getPublications = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const publications = await Publication.find().populate('user', ['profile', 'fullname']).sort({ $natural: -1 });
+  const publications = await Publication.find()
+    .populate('user', ['profile', 'fullname'])
+    .populate("comments.user", ["fullname", "profile"])
+    .sort({ $natural: -1 });
   res.status(200).json({ publications });
 };
