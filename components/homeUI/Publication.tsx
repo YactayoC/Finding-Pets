@@ -6,7 +6,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Swal from 'sweetalert2';
 
 import { TPublication } from 'types';
-import { datePublication } from 'utils/dateInfo';
+import { dateComment, datePublication } from 'utils/dateInfo';
 import { usePublications, useUser } from 'hooks';
 import { stateModalPublication } from 'store/stateModalPublication';
 
@@ -79,10 +79,6 @@ const Publication: FC<Props> = ({ publication }) => {
     return null;
   }
 
-  // (publication.comments.map((commentUser: any) => {
-  //   console.log(commentUser._id)
-  // }))
-
   return (
     <>
       <div className={styles.publication}>
@@ -143,7 +139,10 @@ const Publication: FC<Props> = ({ publication }) => {
             <Image src={publication.images[0]} width={780} height={400} objectFit="contain" alt="profile" />
           </div>
           <div className={styles['publication__comments']}>
-            <div className={styles['publication__comments-buttons']}>
+            <div
+              className={styles['publication__comments-buttons']}
+              style={{ borderBottom: showComments ? '1px solid var(--secondary-color-text)' : 'none' }}
+            >
               <button>
                 <i className="fa-regular fa-heart"></i>
                 <span>Me gusta</span>
@@ -162,9 +161,12 @@ const Publication: FC<Props> = ({ publication }) => {
               <>
                 <form className={styles['publication__comments-views']} onSubmit={handleSubmit(onComment)}>
                   <Image src={user.profile} width={35} height={35} alt="profile" />
-                  <TextareaAutosize
+                  <TextareaAutosize 
+                    onKeyDown={(e) => {
+                     e.key  === "Enter" && e.preventDefault();
+                    }}
                     maxLength={250}
-                    minRows={3}
+                    minRows={1.6}
                     placeholder="Escribe un comentario..."
                     {...register('comment', {
                       required: 'Este campo es requerido',
@@ -187,7 +189,9 @@ const Publication: FC<Props> = ({ publication }) => {
                         </a>
                       </Link>
                       <div className={styles['comment']}>
-                        <p>{commentUser.user.fullname}</p>
+                        <p>
+                          {commentUser.user.fullname} <span> {dateComment(commentUser.date)}</span>{' '}
+                        </p>
                         <TextareaAutosize readOnly value={commentUser.comment} />
                       </div>
                     </div>

@@ -12,7 +12,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
           <meta property="og:url" content="" key="ogurl" />
-          <meta property="og:image" content="/public/home/logo2.png" key="ogimage" />
+          <meta property="og:image" itemProp='iamge' content="/public/home/logo2WSP.png" key="ogimage" />
           <meta property="og:title" content="FindingPets" key="ogtitle" />
           <meta property="og:description" content="FindingPets una pagina para encontrar mascotas perdidas" key="ogdesc" />
         </Head>

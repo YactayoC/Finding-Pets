@@ -71,6 +71,9 @@ const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR })
             <form className={styles.publication__form} onSubmit={handleSubmit(onPublic)}>
               <div className={styles.textarea}>
                 <textarea
+                  onKeyDown={(e) => {
+                    e.key  === "Enter" && e.preventDefault();
+                   }}
                   maxLength={250}
                   placeholder="¿Estás buscando a alguien? 😿🐶"
                   {...register('description', {

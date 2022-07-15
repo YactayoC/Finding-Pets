@@ -25,6 +25,9 @@ const addComment = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
     const publication = await Publication.findById(idPublication);
     const user = await User.findById(idUser);
+    const date = Date.now();
+    const hoy = new Date(date)
+    const formDate = hoy.toISOString();
 
     if (!publication) {
       return res.status(500).json({ message: 'Hubo algun problema en la publicación' });
@@ -37,6 +40,7 @@ const addComment = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     publication.comments?.push({
       comment: comment,
       user: idUser,
+      date: formDate
     })
 
     await publication.save({ validateBeforeSave: true });

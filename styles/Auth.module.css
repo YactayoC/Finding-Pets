@@ -67,11 +67,18 @@
   background-color: #fff;
   padding: 2rem 1.5rem;
   border-radius: 5px;
+  animation: fadeInFormAuth 1s;
 }
+
 @media (min-width: 768px) {
   .content__form {
     padding: 2rem 5rem;
   }
+}
+
+@keyframes fadeInFormAuth {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .content__form h1 {

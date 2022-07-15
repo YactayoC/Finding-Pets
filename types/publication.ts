@@ -7,6 +7,7 @@ export type TPublication = {
   comments?: [{
     comment: string;
     user: string;
+    date: string;
   }],
   state: string;
   user: TUser;

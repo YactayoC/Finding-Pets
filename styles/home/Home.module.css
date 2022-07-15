@@ -257,16 +257,18 @@
   gap: 1rem;
   padding: 0.5rem 1rem;
   position: relative;
+  animation: fadeInPublication 1s;
+}
+
+@keyframes fadeInPublication {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .publication__profile {
   align-items: center;
   display: flex;
   gap: 1rem;
-  /* gap: 1rem;
-  display: grid;
-  grid-template-columns: 7% 80% 10%;
-  align-items: start; */
 }
 
 /* Publication options */
@@ -434,7 +436,7 @@
   display: grid;
   grid-template-columns: repeat(3, 33%);
   gap: 0.2rem;
-  border-block: 1px solid var(--secondary-color-text);
+  border-top: 1px solid var(--secondary-color-text);
   padding-block: 0.2rem;
 }
 
@@ -462,8 +464,8 @@
 
 .publication__comments-views {
   display: flex;
+  align-items: center;
   position: relative;
-  align-items: flex-start;
   padding-inline: 5%;
   gap: 0.7rem;
   width: 100%;
@@ -487,18 +489,20 @@
   font-family: "Roboto";
   height: 4rem;
   max-height: 5rem;
+  padding-top: 10px;
 }
 
-.publication__comments-views button{
+.publication__comments-views button {
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   bottom: 0;
   right: 9%;
   pointer-events: none;
+  background: transparent;
 }
 
 .publication__comments-views button i{
@@ -526,7 +530,7 @@
 
 .publication__comment-user {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.7rem;
 }
 
@@ -552,11 +556,15 @@
 .comment p:nth-child(1) {
   font-size: 0.9rem;
   font-weight: 700;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
-.comment p:nth-child(2) {
-  width: 100%;
-  font-size: 0.9rem;
+.comment p span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--secondary-color-text)
 }
 
 .comment textarea {
@@ -569,6 +577,7 @@
   height: 1.5rem;
   max-height: 100%;
   outline: none;
+  padding: 0;
 }
 
 .comment textarea::-webkit-scrollbar {

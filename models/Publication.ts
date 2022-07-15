@@ -26,6 +26,10 @@ const publicationSchema = new Schema(
           type: Schema.Types.ObjectId,
           required: true,
           ref: 'User',
+        },
+        date: {
+          type: String,
+          required: true,
         }
       },
     ],
