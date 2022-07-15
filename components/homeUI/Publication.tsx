@@ -193,7 +193,9 @@ const Publication: FC<Props> = ({ publication }) => {
                           {commentUser.user.fullname} <span> {dateComment(commentUser.date)}</span>{' '}
                         </p>
                         <TextareaAutosize readOnly value={commentUser.comment} />
+                      
                       </div>
+                      <i className="fa-solid fa-ellipsis"></i>
                     </div>
                   ))}
                 </div>

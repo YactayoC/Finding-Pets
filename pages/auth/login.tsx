@@ -24,6 +24,7 @@ const LoginPage: NextPage = () => {
   const [, setUser] = useAtom(infoUser)
   const { login } = useUser();
   const [ isLoading, setIsLoading ] = useState(false)
+  const [isVisiblePassword, setIsVisiblePassword] = useState(false)
   const router = useRouter();
 
   const onLogin = async({email, password}: LoginData) => {
@@ -75,7 +76,7 @@ const LoginPage: NextPage = () => {
             <div className={styles.form__group}>
               <label htmlFor="password">Password</label>
               <input
-                type="password"
+                type={isVisiblePassword ? "text" : "password"}
                 id="password"
                 placeholder="Ingresa tu contraseña"
                 {...register('password', {
@@ -83,6 +84,11 @@ const LoginPage: NextPage = () => {
                   minLength: { value: 6, message: 'Minimo 6 caraceteres' },
                 })}
               />
+              <i className="fa-solid fa-eye" 
+              onMouseDown={() => setIsVisiblePassword(true)}
+              onMouseUp={() => setIsVisiblePassword(false)}
+              >
+              </i>
               {errors.password && <p className={styles.form__error}>{errors.password.message}</p>}
             </div>
             <button className={styles.form__submit} disabled={isLoading} type="submit">Iniciar Sesión</button>

@@ -129,6 +129,7 @@
   display: flex;
   flex-direction: column;
   width: 20rem;
+  position: relative;
 }
 
 .form__group label {
@@ -142,6 +143,21 @@
   padding: 1rem 1rem;
   border-radius: 8px;
   outline: none;
+  padding-right: 2.5rem;
+}
+
+.form__group i {
+  cursor: pointer;
+  color: var(--color-button);
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+  right: 5%;
+}
+
+.form__group i:hover {
+  cursor: pointer;
+  color: var(--color-button-hover);
 }
 
 .form__submit {

@@ -132,6 +132,16 @@
   transition: all 0.3s ease-in-out;
   top: 0;
   left: 0;
+  animation: fadeInEditProfile 0.5s;
+}
+
+@keyframes fadeInEditProfile {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .form {

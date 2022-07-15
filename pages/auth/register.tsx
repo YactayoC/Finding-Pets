@@ -9,6 +9,7 @@ import { isEmail, isFullname, isPhone } from 'utils/validations';
 import { useUser } from 'hooks';
 
 import styles from 'styles/Auth.module.css';
+import { useState } from 'react';
 
 type RegisterData = {
   fullname: string;
@@ -20,6 +21,7 @@ type RegisterData = {
 const RegisterPage = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<RegisterData>();
   const { register: registerUser } = useUser();
+  const [isVisiblePassword, setIsVisiblePassword] = useState(false)
   const router = useRouter();
 
   const onRegister = async ({ fullname, phone, email, password }: RegisterData) => {
@@ -100,7 +102,7 @@ const RegisterPage = () => {
             <div className={styles.form__group}>
               <label htmlFor="password">Password</label>
               <input
-                type="password"
+                type={isVisiblePassword ? "text" : "password"}
                 id="password"
                 placeholder="Ingresa tu contraseña"
                 {...register('password', {
@@ -108,6 +110,11 @@ const RegisterPage = () => {
                   minLength: { value: 6, message: 'Minimo 6 caraceteres' },
                 })}
               />
+              <i className="fa-solid fa-eye" 
+              onMouseDown={() => setIsVisiblePassword(true)}
+              onMouseUp={() => setIsVisiblePassword(false)}
+              >
+              </i>
               {errors.password && <p className={styles.form__error}>{errors.password.message}</p>}
             </div>
             <button className={styles.form__submit} type="submit">Registrate</button>
