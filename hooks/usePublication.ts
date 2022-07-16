@@ -1,4 +1,4 @@
-import { addPublicationDB, deletePublicationDB, getPublicationDB, updatePublicationDB } from 'services/publications';
+import { addPublicationDB, deletePublicationDB, updatePublicationDB } from 'services/publications';
 import { uploadImage } from 'utils/uploadImage';
 
 type ResponseData = {
@@ -18,15 +18,6 @@ export const usePublications = () => {
       return { hasError: true, message: error.response.data.message };
     }
   };
-
-  const getPublicationById = async(id: string): Promise<ResponseData> => {
-    try {
-      const resp = await getPublicationDB(id);
-      return { hasError: false, data: resp.publication };
-    } catch (error) {
-      return { hasError: true, message: error.response.data.message };
-    }
-  }
 
   const updatePublication = async(id: string, description: string, state: string, imagePublication: any): Promise<ResponseData> => {
     try {
@@ -57,7 +48,6 @@ export const usePublications = () => {
   return {
     addPublication,
     deletePublication,
-    getPublicationById,
     updatePublication
   };
 };
