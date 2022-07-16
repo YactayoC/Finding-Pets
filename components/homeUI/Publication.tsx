@@ -25,30 +25,25 @@ type AddComment = {
 };
 
 const Publication: FC<Props> = ({ publication }) => {
-  const { addComment } = useComments();
-  const [isVisibleOptions, setIsVisibleOptions] = useState<boolean>(false);
+  const [isVisibleOptionsPublication, setIsVisibleOptionsPublication] = useState<boolean>(false);
   const setShowModalEditPublication = useUpdateAtom(stateModalPublication);
   const { deletePublication } = usePublications();
+  const { addComment, deleteComment } = useComments();
   const [showComments, setShowComments] = useState(false);
   const { user } = useUser();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<AddComment>({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<AddComment>({
     defaultValues: {
       idPublication: publication?._id,
       idUser: user?._id,
     },
   });
 
-  const onComment = async ({ idPublication, idUser, comment }: AddComment) => {
+  const onCommentPublication = async ({ idPublication, idUser, comment }: AddComment) => {
     await addComment(idPublication, idUser, comment);
     reset();
   };
 
-  const onDelete = async (id: any) => {
+  const onDeletePublication = async (id: any) => {
     Swal.fire({
       title: '¿Seguro que quieres eliminar tu publicación?',
       showCancelButton: true,
@@ -75,6 +70,11 @@ const Publication: FC<Props> = ({ publication }) => {
     });
   };
 
+  // const onDeleteComment = async(idComment: string, idPublication: string) => {
+  //   const resp = await deleteComment(idComment, idPublication);
+  //   console.log(resp)
+  // }
+
   if (!user) {
     return null;
   }
@@ -88,7 +88,7 @@ const Publication: FC<Props> = ({ publication }) => {
               <Image src={publication.user.profile} width={40} height={40} alt="profile" />
             </a>
           </Link>
-          <div className={styles['publication__profile-data']} onClick={() => setIsVisibleOptions(false)}>
+          <div className={styles['publication__profile-data']} onClick={() => setIsVisibleOptionsPublication(false)}>
             <p>
               {publication.user.fullname}
               <span
@@ -107,13 +107,16 @@ const Publication: FC<Props> = ({ publication }) => {
           {publication.user._id === user._id && (
             <>
               <div className={styles.publication__show}>
-                <i className="fa-solid fa-ellipsis" onClick={() => setIsVisibleOptions(!isVisibleOptions)}></i>
+                <i
+                  className="fa-solid fa-ellipsis"
+                  onClick={() => setIsVisibleOptionsPublication(!isVisibleOptionsPublication)}
+                ></i>
               </div>
-              {isVisibleOptions && (
+              {isVisibleOptionsPublication && (
                 <ul className={styles.publication__options}>
                   <li
                     onClick={() => {
-                      setIsVisibleOptions(false);
+                      setIsVisibleOptionsPublication(false);
                       setShowModalEditPublication({
                         isVisible: true,
                         id: publication._id,
@@ -125,7 +128,7 @@ const Publication: FC<Props> = ({ publication }) => {
                   >
                     <span>Editar</span> <i className="fa-solid fa-pen-to-square"></i>
                   </li>
-                  <li onClick={() => onDelete(publication._id)}>
+                  <li onClick={() => onDeletePublication(publication._id)}>
                     <span>Eliminar</span> <i className="fa-solid fa-xmark"></i>
                   </li>
                 </ul>
@@ -133,7 +136,7 @@ const Publication: FC<Props> = ({ publication }) => {
             </>
           )}
         </div>
-        <div className={styles.publication__description} onClick={() => setIsVisibleOptions(false)}>
+        <div className={styles.publication__description} onClick={() => setIsVisibleOptionsPublication(false)}>
           <p>{publication.description}</p>
           <div className={styles['publication__description-img']}>
             <Image src={publication.images[0]} width={780} height={400} objectFit="contain" alt="profile" />
@@ -159,11 +162,11 @@ const Publication: FC<Props> = ({ publication }) => {
 
             {showComments && (
               <>
-                <form className={styles['publication__comments-views']} onSubmit={handleSubmit(onComment)}>
+                <form className={styles['publication__comments-views']} onSubmit={handleSubmit(onCommentPublication)}>
                   <Image src={user.profile} width={35} height={35} alt="profile" />
-                  <TextareaAutosize 
+                  <TextareaAutosize
                     onKeyDown={(e) => {
-                     e.key  === "Enter" && e.preventDefault();
+                      e.key === 'Enter' && e.preventDefault();
                     }}
                     maxLength={250}
                     minRows={1.6}
@@ -180,6 +183,7 @@ const Publication: FC<Props> = ({ publication }) => {
                   </button>
                 </form>
 
+                {/* Users comments */}
                 <div className={styles['publication__comments-users']}>
                   {publication.comments.map((commentUser: any) => (
                     <div className={styles['publication__comment-user']} key={commentUser._id}>
@@ -189,13 +193,18 @@ const Publication: FC<Props> = ({ publication }) => {
                         </a>
                       </Link>
                       <div className={styles['comment']}>
-                        <p>
-                          {commentUser.user.fullname} <span> {dateComment(commentUser.date)}</span>{' '}
-                        </p>
+                        <p>{commentUser.user.fullname}</p>
                         <TextareaAutosize readOnly value={commentUser.comment} />
-                      
+                        <span> {dateComment(commentUser.date)}</span>
                       </div>
-                      <i className="fa-solid fa-ellipsis"></i>
+                      {/* <div className={styles.comment__buttons}>
+                        <button>
+                          <i className="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button onClick={() => onDeleteComment(commentUser._id, publication._id)}>
+                          <i className="fa-solid fa-xmark"></i>
+                        </button>
+                      </div> */}
                     </div>
                   ))}
                 </div>

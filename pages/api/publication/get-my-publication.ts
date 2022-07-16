@@ -16,7 +16,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
 const getMyPublications = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { userId = '' } = req.query;
-  //.populate({'user', ["-password"]})
   try {
     const publications = await Publication.find({ user: userId })
     .populate('user', ["-password"])

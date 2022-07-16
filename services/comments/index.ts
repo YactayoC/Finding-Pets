@@ -1,21 +1,11 @@
 import findingPetsApi from 'axios/findingPetsApi';
 
 export const addCommentDB = async (idPublication: string, idUser: string, comment: string) => {
-  const { data } = await findingPetsApi.post(`/comment/add-comments?idPublication=${idPublication}`, { idUser, comment });
+  const { data } = await findingPetsApi.post(`/comment/add-comment?idPublication=${idPublication}`, { idUser, comment });
   return data;
 };
 
-// export const getPublicationDB = async (id: string) => {
-//   const { data } = await findingPetsApi.get(`/publication/get-by?id=${id}`);
-//   return data;
-// }
-
-// export const updatePublicationDB = async (id: string, description: string, state: string, imagePublication: string ) => {
-//   const { data } = await findingPetsApi.put(`/publication/update?idPublication=${id}`, {description, imagePublication, state});
-//   return data;
-// }
-
-// export const deletePublicationDB = async (id: string) => {
-//   const { data } = await findingPetsApi.delete(`/publication/delete?id=${id}`);
-//   return data;
-// };
+export const deleteCommentDB = async (idComment: string, idPublication: string) => {
+  const { data } = await findingPetsApi.delete(`/comment/delete-comment?idComment=${idComment}&idPublication=${idPublication}`);
+  return data;
+}

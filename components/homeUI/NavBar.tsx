@@ -4,9 +4,21 @@ import Link from 'next/link';
 import { useUser } from 'hooks';
 
 import styles from 'styles/home/NavBar.module.css';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+
+type SearchValue = {
+  value: string;
+}
 
 const NavBar = () => {
+  const { register, handleSubmit, formState: { errors }} = useForm<SearchValue>();
   const { user, logout } = useUser();
+  const router = useRouter();
+
+  const onSearch = ({ value }: SearchValue) => {
+    router.push(`/home/search/${value}`)
+  }
 
   if (!user) return null;
   return (
@@ -20,9 +32,9 @@ const NavBar = () => {
           </Link>
         </div>
 
-        <form className={styles.nav__search}>
+        <form className={styles.nav__search} onSubmit={handleSubmit(onSearch)}>
           <i className="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Busca en FindingPets" />
+          <input type="text" placeholder="Busca en FindingPets" {...register("value")} />
         </form>
 
         <div className={styles.nav__profile}>
@@ -38,7 +50,6 @@ const NavBar = () => {
               <i className="fa-solid fa-power-off"></i>
             </div>
           </div>
-          {/* Options */}
         </div>
       </div>
     </nav>

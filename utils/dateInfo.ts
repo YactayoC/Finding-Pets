@@ -8,7 +8,7 @@ export const datePublication = (date: string) => {
 
 export const dateComment = (date: string) => {
   const formNow = formatDistanceToNow(parseISO(date), { locale: es });
-  return `${formNow}`;
+  return `hace ${formNow}`;
 };
 
 export const dateUser = (date: string) => {

@@ -346,6 +346,66 @@
   color: var(--color-button-remove);
 }
 
+/* Comment options */
+.comment__options {
+  position: absolute;
+  top: 3rem;
+  right: 1rem;
+  border-radius: 10px;
+  margin: 0;
+  background-color: var(--color-gray);
+  padding: 0;
+  z-index: 99;
+  list-style: none;
+  width: 28%;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (min-width: 700px) {
+  .comment__options {
+    width: 16%;
+  }
+}
+
+.comment__options li {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+  padding: 0.4rem 0.4rem;
+  font-size: 1rem;
+  font-weight: 400;
+  gap: 0.5rem;
+  font-weight: 400;
+  transition: background 0.3s ease-in-out;
+}
+
+.comment__options li:hover {
+  background-color: #fff;
+}
+
+.comment__options li i {
+  text-align: center;
+}
+
+.comment__options li span {
+  width: 80%;
+}
+
+.comment__options li i {
+  width: 20%;
+}
+
+.comment__options li:nth-child(1) {
+  color: var(--color-button);
+}
+
+.comment__options li:nth-child(2) {
+  color: var(--color-button-remove);
+}
+
+
 /*  */
 .publication__profile img {
   border-radius: 50%;
@@ -532,6 +592,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.7rem;
+  position: relative;
 }
 
 
@@ -561,7 +622,7 @@
   align-items: center;
 }
 
-.comment p span {
+.comment span {
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--secondary-color-text)
@@ -588,6 +649,35 @@
 .comment textarea::-webkit-scrollbar-thumb {
   background: var(--secondary-color-text);
   border-radius: 4px;
+}
+
+.comment__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 10%;
+  height: 100%;
+}
+
+.comment__buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  cursor: pointer;
+  width: 80%;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+}
+
+.comment__buttons button:nth-child(2) {
+  background-color: var(--color-button-remove);
+}
+.comment__buttons button:nth-child(2):hover {
+  background-color: var(--color-button-remove-hover);
 }
 
 /* Random */

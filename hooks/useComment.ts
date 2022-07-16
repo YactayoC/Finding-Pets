@@ -1,4 +1,4 @@
-import { addCommentDB } from 'services/comments';
+import { addCommentDB, deleteCommentDB } from 'services/comments';
 
 type ResponseData = {
   hasError: boolean;
@@ -17,7 +17,17 @@ export const useComments = () => {
     }
   };
 
+  const deleteComment = async (idComment: string, idPublication: string): Promise<ResponseData> => {
+    try {
+      const resp = await deleteCommentDB( idComment, idPublication );
+      return { hasError: false, message: resp.message };
+    } catch (error) {
+      return { hasError: true, message: error.response.data.message };
+    }
+  }
+
   return {
     addComment,
+    deleteComment
   };
 };

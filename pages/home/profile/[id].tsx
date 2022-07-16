@@ -17,7 +17,7 @@ import styles from 'styles/home/Profile.module.css';
 const ProfilePage = ({ userSSR }: any) => {
   const { query } = useRouter();
   const userAtom = useAtomValue(infoUser)
-  const { publications, isLoading} = useSWRPublications(`/publication/get-my?userId=${query.id}`);
+  const { publications, isLoading} = useSWRPublications(`/publication/get-my-publication?userId=${query.id}`);
   const { user } = useSWRUser(`/user/get-user?userId=${userAtom?._id}`);
   const setShowModalEditUser = useUpdateAtom(stateModalProfile);
   
