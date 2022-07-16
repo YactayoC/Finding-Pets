@@ -16,6 +16,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.4",
     "next": "12.2.2",
+    "next-connect": "^1.0.0-next.2",
     "nodemailer": "^6.7.7",
     "react": "18.2.0",
     "react-content-loader": "^6.2.0",
