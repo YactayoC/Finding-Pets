@@ -15,6 +15,7 @@ import ModalEditUser from './ModalEditUser';
 import { stateModalProfile } from 'store/stateModalProfile';
 
 import styles from 'styles/home/Home.module.css';
+import { useRouter } from 'next/router';
 
 type Props = {
   publications: TPublication[] | any;
@@ -36,6 +37,8 @@ const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR })
   const showModalEditProfile = useAtomValue(stateModalProfile);
   const [isLoadingAddPublication, setIsLoadingAddPublication] = useState(false);
   const [valueImage, setValueImage] = useState<any>(null);
+  const { query } = useRouter();
+
   let windowWidth = window.innerWidth;
 
   const onPublic = async ({ description, image, user }: AddPublic) => {
@@ -75,7 +78,7 @@ const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR })
                     e.key  === "Enter" && e.preventDefault();
                    }}
                   maxLength={250}
-                  placeholder="¿Estás buscando a alguien? 😿🐶"
+                  placeholder="¿Estás buscando a alguien?"
                   {...register('description', {
                     required: 'Este campo es requerido',
                     minLength: { value: 10, message: 'Mínimo 10 caracteres' },
@@ -137,10 +140,16 @@ const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR })
         <div className={styles.publications__view}>
           {isLoading && windowWidth > 600 && [1, 2, 3].map(() => <LoaderPublications key={crypto.randomUUID()} />)}
           {isLoading && windowWidth < 450 && [1, 2, 3].map(() => <LoaderPublicationsPhone key={crypto.randomUUID()} />)}
-          {!isLoading &&
+          {!isLoading && publications.publications.length > 0 ?
             publications.publications.map((publication: any) => (
               <Publication key={publication._id} publication={publication} />
-            ))}
+            ))
+            :
+            <div className={styles.publications__notfound}>
+               <p>No se encontraron resultados con la búsqueda: {query.value}</p> 
+               <Image src="/home/publicationsnot.png" alt="NotFound" width={230} height={270} />
+            </div>
+          }
         </div>
       </div>
     </>

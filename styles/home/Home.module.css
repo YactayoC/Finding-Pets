@@ -249,6 +249,12 @@
   margin-bottom: 1rem;
 }
 
+.publications__notfound {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 .publication {
   background-color: #fff;
   border-radius: 10px;
