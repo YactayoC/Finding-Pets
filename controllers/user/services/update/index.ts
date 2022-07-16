@@ -93,7 +93,7 @@ export const fullName = async (id: string, fullName: string) => {
 
   const userUpdated = await User.findByIdAndUpdate(
     id,
-    { fullName },
+    { fullname: fullName },
     { new: true }
   );
   return userUpdated;
