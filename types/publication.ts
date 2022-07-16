@@ -5,7 +5,7 @@ export type TPublication = {
   description: string;
   images?: string[];
   comments?: [{
-    _id: string | string[] | undefined;
+    _id?: string | string[] | undefined;
     comment: string;
     user: string;
     date: string;
