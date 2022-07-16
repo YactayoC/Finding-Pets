@@ -28,12 +28,9 @@ const ProfilePage = ({ userSSR }: any) => {
     return null;
   }
 
+  const userData = user.user._id === userSSR._id ? user.user : userSSR;
   return (
-    <ProfileLayout
-      title={`Perfil | ${
-        user.user._id === userSSR._id ? user.user.fullname : userSSR?.fullname
-      }`}
-    >
+    <ProfileLayout title={`Perfil | ${userData.fullname}`}>
       <div className={styles.profile}>
         <div className={styles.hero}>
           <div className={styles.data}>
@@ -41,22 +38,14 @@ const ProfilePage = ({ userSSR }: any) => {
               <LoaderProfile />
             ) : (
               <Image
-                src={
-                  user.user._id === userSSR._id
-                    ? user.user.profile
-                    : userSSR?.profile
-                }
+                src={userData.profile}
                 width={180}
                 height={180}
                 alt="profile"
               />
             )}
             <div className={styles.option}>
-              <h2>
-                {user.user._id === userSSR._id
-                  ? user.user.fullname
-                  : userSSR?.fullname}
-              </h2>
+              <h2>{userData.fullname}</h2>
               {userSSR._id === user?.user?._id && (
                 <button onClick={() => setShowModalEditUser(true)}>
                   <i className="fa-solid fa-pen-to-square"></i>Editar Perfil
@@ -73,21 +62,15 @@ const ProfilePage = ({ userSSR }: any) => {
             <ul className={styles.details__data}>
               <li>
                 <i className="fa-solid fa-user"></i>
-                {user.user._id === userSSR._id
-                  ? user.user.fullname
-                  : userSSR?.fullname}
+                {userData.fullname}
               </li>
               <li>
                 <i className="fa-solid fa-at"></i>
-                {user.user._id === userSSR._id
-                  ? user.user.email
-                  : userSSR?.email}
+                {userData.email}
               </li>
               <li>
                 <i className="fa-solid fa-phone"></i>
-                {user.user._id === userSSR._id
-                  ? user.user.phone
-                  : userSSR?.phone}
+                {userData.phone}
               </li>
               <li>
                 <i className="fa-solid fa-bullhorn"></i> Se unió{" "}
