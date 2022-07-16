@@ -1,16 +1,18 @@
 import { GetServerSideProps } from 'next';
-import HomeLayout from 'components/layouts/Home/HomeLayout';
-import findingPetsApi from 'axios/findingPetsApi';
-import HomePublications from 'components/homeUI/HomePublications';
 import { useAtomValue } from 'jotai';
-import { infoUser } from 'store/stateUser';
-import { useSWRUser } from 'hooks';
-import HomeOptions from 'components/homeUI/HomeOptions';
-import HomeRandom from 'components/homeUI/HomeRandom';
 
-const Result = ({ publications, query }: any) => {
+import HomeLayout from 'components/layouts/Home/HomeLayout';
+import HomePublications from 'components/homeUI/HomePublications';
+import HomeRandom from 'components/homeUI/HomeRandom';
+import HomeOptions from 'components/homeUI/HomeOptions';
+import { useSWRPublications, useSWRUser } from 'hooks';
+import { infoUser } from 'store/stateUser';
+import findingPetsApi from 'axios/findingPetsApi';
+
+const ResultPage = ({ query }: any) => {
   const userAtom = useAtomValue(infoUser);
   const { user } = useSWRUser(`/user/get-user?userId=${userAtom?._id!}`);
+  const {publications, isLoading} = useSWRPublications(`/publication/search-publication?search=${query?.value}`)
 
   if (!user) {
     return null;
@@ -19,20 +21,22 @@ const Result = ({ publications, query }: any) => {
   return (
     <HomeLayout title={`Results for:  ${query.value}`}>
       <HomeOptions />
-      <HomePublications publications={publications} isLoading={false} user={user.user} />
+      <HomePublications publications={publications} isLoading={isLoading} user={user.user} />
       <HomeRandom />
     </HomeLayout>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { data } = await findingPetsApi.get(`/publication/search-publication?search=${params?.value}`);
+  //const { data } = await findingPetsApi.get(`/publication/search-publication?search=${params?.value}`);
+  
   return {
     props: {
-      publications: data,
+      //publications: data,
       query: params
     },
   };
 };
 
-export default Result;
+ResultPage.requireAuth = true;
+export default ResultPage;

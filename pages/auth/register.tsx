@@ -66,6 +66,7 @@ const RegisterPage = () => {
                 type="text"
                 id="fullname"
                 placeholder="Ingresa tu nombre completo"
+                autoComplete='off'
                 {...register('fullname', {
                   required: 'Este campo es requerido',
                   minLength: { value: 6, message: 'Mínimo 6 caracteres' },
@@ -80,6 +81,7 @@ const RegisterPage = () => {
                 type="number"
                 id="phone"
                 placeholder="Ingresa tu número de teléfono"
+                autoComplete='off'
                 {...register('phone', {
                   required: 'Este campo es requerido',
                   minLength: { value: 9, message: 'Mínimo 9 numeros' },
@@ -95,6 +97,7 @@ const RegisterPage = () => {
                 type="email"
                 id="email"
                 placeholder="Ingresa tu email"
+                autoComplete='off'
                 {...register('email', { required: 'Este campo es requerido', validate: isEmail })}
               />
               {errors.email && <p className={styles.form__error}>{errors.email.message}</p>}

@@ -69,6 +69,7 @@ const LoginPage: NextPage = () => {
                 type="email"
                 id="email"
                 placeholder="Ingresa tu email"
+                autoComplete='off'
                 {...register('email', { required: 'Este campo es requerido', validate: isEmail })}
               />
               {errors.email && <p className={styles.form__error}>{errors.email.message}</p>}

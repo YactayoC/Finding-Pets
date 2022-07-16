@@ -20,14 +20,17 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { userId = '' } = req.query;
 
   await dbConnect();
+  try {
+    const user = await User.findById(userId);
 
-  const user = await User.findById(userId);
+    if (!user) {
+      return res.status(400).json({ message: 'Usuario no encontrado' });
+    }
 
-  if (!user) {
-    return res.status(400).json({ message: 'Usuario no encontrado' });
+    return res.status(200).json({
+      user,
+    });
+  } catch (error) {
+    return
   }
-
-  return res.status(200).json({
-    user,
-  });
 };

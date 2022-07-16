@@ -10,7 +10,7 @@ import { infoUser } from 'store/stateUser';
 const Main = () => {
   const userAtom = useAtomValue(infoUser);
   const { publications, isLoading} = useSWRPublications("/publication/get-all-publications");
-  const { user } = useSWRUser(`/user/get-user?userId=${userAtom?._id!}`);
+  const { user } = useSWRUser(`/user/get-user?userId=${userAtom?._id}`);
   
   if (!user) {
     return null;

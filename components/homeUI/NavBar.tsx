@@ -34,7 +34,7 @@ const NavBar = () => {
 
         <form className={styles.nav__search} onSubmit={handleSubmit(onSearch)}>
           <i className="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Busca en FindingPets" {...register("value")} />
+          <input type="text" placeholder="Busca en FindingPets" {...register("value")}  autoComplete="off"/>
         </form>
 
         <div className={styles.nav__profile}>
