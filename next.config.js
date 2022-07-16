@@ -3,12 +3,12 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ["res.cloudinary.com", "i.pinimg.com"],
   },
   rewrites: {
-    source: '/api/:path*',
-    destination: 'https://finding-pets.vercel.app/:path*',
+    source: "/api/:path*",
+    destination: "https://finding-pets.vercel.app/:path*",
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
