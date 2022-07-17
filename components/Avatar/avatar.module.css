@@ -1,0 +1,91 @@
+.container {
+  position: relative;
+  display: flex;
+}
+
+.container img {
+  --size: 100%;
+  width: var(--size);
+  height: var(--size);
+  object-fit: cover;
+}
+
+.container.small img {
+  --size: 48px;
+}
+
+.container.normal img {
+  --size: 96px;
+}
+
+.container.medium img {
+  --size: 128px;
+}
+
+.container.large img {
+  --size: 150px;
+}
+
+.actions {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.iconButton {
+  --size: 36px;
+  width: var(--size);
+  height: var(--size);
+  background: var(--primary-color-text);
+  color: var(--color-gray);
+  border-radius: 50%;
+
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.35s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.container.small .iconButton {
+  --size: 100%;
+  opacity: 0;
+}
+
+.container.small .iconButton:hover,
+.iconButton:hover {
+  opacity: 0.85;
+}
+.iconButton:active {
+  transform: scale(0.95);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.1;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.85;
+  }
+}
+.confirmButton {
+  animation: pulse 1s infinite ease alternate-reverse;
+}
+.confirmButton:hover {
+  animation: none;
+  opacity: 1;
+}
+
+.cancelButton {
+  background: var(--color-button-remove);
+}

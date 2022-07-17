@@ -364,6 +364,13 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
+avvvatars-react@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/avvvatars-react/-/avvvatars-react-0.4.2.tgz#9569c16ae9a4925f898539ff98c6f734b6a4fe1b"
+  integrity sha512-D/bnSM+P6pQi71dFeFVqQsqmv+ct5XG7uO2lvJoiksALpXLd6kPgpRR1SUQxFZJkJNrkmg0NPgbhIgJgOsDYRQ==
+  dependencies:
+    goober "^2.1.8"
+
 axe-core@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.2.tgz#dcf7fb6dea866166c3eab33d68208afe4d5f670c"
@@ -1026,6 +1033,11 @@ globby@^11.1.0:
     ignore "^5.2.0"
     merge2 "^1.4.1"
     slash "^3.0.0"
+
+goober@^2.1.8:
+  version "2.1.10"
+  resolved "https://registry.yarnpkg.com/goober/-/goober-2.1.10.tgz#058def43ba1e3b06f973dbb372a4978aa42f1049"
+  integrity sha512-7PpuQMH10jaTWm33sQgBQvz45pHR8N4l3Cu3WMGEWmHShAcTuuP7I+5/DwKo39fwti5A80WAjvqgz6SSlgWmGA==
 
 has-bigints@^1.0.1, has-bigints@^1.0.2:
   version "1.0.2"
