@@ -19,7 +19,7 @@ const getAvatarSize = (size: AvatarSize) => {
 
 type PreviewState = {
   url: string;
-  image: File;
+  file: File | null;
 };
 
 export default function Avatar({
@@ -40,6 +40,8 @@ export default function Avatar({
 
   const avatarSrc = preview?.url || src;
 
+  const waitingForConfirm = Boolean(preview?.file);
+
   const handleImageError = () => {
     setError(true);
   };
@@ -50,7 +52,7 @@ export default function Avatar({
     const url = URL.createObjectURL(file);
     setPreview({
       url,
-      image: file,
+      file: file,
     });
     setTimeout(() => {
       URL.revokeObjectURL(url);
@@ -58,8 +60,11 @@ export default function Avatar({
   };
 
   const handleConfirmUpload = () => {
-    if (!preview || !onConfirmUpload) return;
-    onConfirmUpload(preview?.image);
+    if (!preview || !onConfirmUpload || !preview.file) return;
+
+    onConfirmUpload(preview.file).then(() => {
+      setPreview({ ...preview, file: null });
+    });
   };
 
   const handleCancelUpload = () => {
@@ -68,7 +73,7 @@ export default function Avatar({
 
   return (
     <picture className={`${styles.container} ${styles[defaultSize]}`}>
-      {editable && !preview && (
+      {editable && !waitingForConfirm && (
         <label className={styles.actions} role="button">
           <b> {/* this is for align to right using flex :c*/} </b>
           <span className={styles.iconButton}>
@@ -82,7 +87,7 @@ export default function Avatar({
           </span>
         </label>
       )}
-      {editable && preview && (
+      {editable && waitingForConfirm && (
         <div className={styles.actions}>
           <button
             className={`${styles.iconButton} ${styles.cancelButton}`}

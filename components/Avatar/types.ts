@@ -8,5 +8,5 @@ export type AvatarProps = {
   editable?: boolean;
   alt?: string;
   email: string;
-  onConfirmUpload?: (image: File) => void;
+  onConfirmUpload?: (image: File) => Promise<void>;
 } & ImageProps;
