@@ -30,7 +30,7 @@ type AddPublic = {
 
 const HomePublications: FC<Props> = ({ url = "publication/get-all-publications", userSSR }) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<AddPublic>();
-  const { publications, isLoading, addPublication, deletePublication, mutatePublications } = usePublications(url);
+  const { publications, isLoading, addPublication, updatePublication, deletePublication, mutatePublications } = usePublications(url);
   const { user } = useUser();
   const router = useRouter();
 
@@ -68,7 +68,7 @@ const HomePublications: FC<Props> = ({ url = "publication/get-all-publications",
 
   return (
     <>
-      {showModalEditPublication.isVisible && <ModalEditPublication />}
+      {showModalEditPublication.isVisible && <ModalEditPublication updatePublication={updatePublication} />}
       {showModalEditProfile && <ModalEditUser />}
       <div className={styles.publications}>
         {((userSSR?._id === user._id) || !userSSR) && (

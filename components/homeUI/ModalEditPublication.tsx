@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 import Swal from 'sweetalert2';
 
-import { usePublications } from 'hooks';
 import { stateModalPublication } from 'store/stateModalPublication';
 
 import styles from 'styles/home/Profile.module.css';
@@ -14,10 +13,9 @@ type PublicationUpdate = {
   state: string;
 };
 
-const ModalEditPublication = () => {
-  const { updatePublication } = usePublications();
+const ModalEditPublication = ({updatePublication} : any) => {
   const [showModalEditPublication, setShowModalEditPublication] = useAtom(stateModalPublication);
-  const { register, handleSubmit, formState: { errors }, watch,} = useForm<PublicationUpdate>({
+  const { register, handleSubmit, formState: { errors } } = useForm<PublicationUpdate>({
     defaultValues: {
       id: showModalEditPublication.id!,
       description: showModalEditPublication.description,
