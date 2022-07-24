@@ -23,7 +23,7 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Preview 📷
-![image](https://user-images.githubusercontent.com/89726167/175652959-d2db4d98-74e8-4221-aee1-07537f9c6205.png)
+![image](https://user-images.githubusercontent.com/89726167/180655761-0db26afd-b54f-4dc5-9f75-df8d017b50d5.png)
 ![image](https://user-images.githubusercontent.com/89726167/175652537-14eb7065-2806-464d-be8b-df43ab6fdbc2.png)
 ![image](https://user-images.githubusercontent.com/89726167/175652606-77038da4-c5f1-4870-849d-966391b6eb8c.png)
 ![image](https://user-images.githubusercontent.com/89726167/175652706-50a3f708-a6ba-4cf2-b600-a1e46604754b.png)
