@@ -1,16 +1,16 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-import { useUser } from 'hooks';
+import { useUser } from "hooks";
 
-import styles from 'styles/home/Home.module.css';
+import styles from "styles/home/Home.module.css";
 
 const HomeOptions = () => {
   const { user } = useUser();
-  const {asPath} = useRouter();
+  const { asPath } = useRouter();
   const gmail = user?.email.substring(0, user.email.length - 10);
-  
+
   if (!user) {
     return null;
   }
@@ -18,7 +18,7 @@ const HomeOptions = () => {
   return (
     <div className={styles.options}>
       <div className={styles.options__profile}>
-        <div className={styles['options__profile-data']}>
+        <div className={styles["options__profile-data"]}>
           <Image src={user.profile} width={45} height={45} alt="profile" />
         </div>
         <div>
@@ -28,7 +28,11 @@ const HomeOptions = () => {
       </div>
       <div className={styles.options__list}>
         <Link href="/home">
-          <a className={`${asPath.includes("home") && styles['options__list-select']}`}>
+          <a
+            className={`${
+              asPath.includes("home") && styles["options__list-select"]
+            }`}
+          >
             <i className="fa-solid fa-house"></i> Home
           </a>
         </Link>

@@ -8,9 +8,7 @@ import Swal from 'sweetalert2';
 
 import AuthLayout from 'components/layouts/AuthLayout';
 import { isEmail } from 'utils/validations';
-import { infoUser } from 'store/stateUser';
 import { useUser } from 'hooks';
-import { useAtom } from 'jotai';
 
 import styles from 'styles/Auth.module.css';
 
@@ -21,7 +19,6 @@ type LoginData = {
 
 const LoginPage: NextPage = () => {
   const { register,handleSubmit,formState: { errors } } = useForm<LoginData>();
-  const [, setUser] = useAtom(infoUser)
   const { login } = useUser();
   const [ isLoading, setIsLoading ] = useState(false)
   const [isVisiblePassword, setIsVisiblePassword] = useState(false)
@@ -29,7 +26,7 @@ const LoginPage: NextPage = () => {
 
   const onLogin = async({email, password}: LoginData) => {
     setIsLoading(true);
-    const {hasError, data, message, token} = await login(email, password);
+    const { hasError, message } = await login(email, password);
     if (hasError) {
       setIsLoading(false);
       return Swal.fire({
@@ -39,8 +36,6 @@ const LoginPage: NextPage = () => {
       });
     }
     
-    setUser(data!)
-    localStorage.setItem('token', token!)
     router.replace('/home')
     setIsLoading(false);
   };

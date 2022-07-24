@@ -1,26 +1,24 @@
 import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useAtomValue } from 'jotai';
 
-import { TPublication, TUser } from 'types';
+import { TUser } from 'types';
+import { usePublications, useUser } from 'hooks';
 import LoaderPublications from 'components/loader/LoaderPublications';
 import Publication from 'components/homeUI/Publication';
 import LoaderPublicationsPhone from 'components/loader/LoaderPublicationPhone';
 import { stateModalPublication } from 'store/stateModalPublication';
 import ModalEditPublication from './ModalEditPublication';
-import { usePublications } from 'hooks';
 import ModalEditUser from './ModalEditUser';
 import { stateModalProfile } from 'store/stateModalProfile';
 
 import styles from 'styles/home/Home.module.css';
-import { useRouter } from 'next/router';
 
 type Props = {
-  publications: TPublication[] | any;
-  isLoading: boolean;
-  user: TUser;
+  url?: string;
   userSSR?: TUser;
 };
 
@@ -30,20 +28,24 @@ type AddPublic = {
   user: string;
 };
 
-const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR }) => {
+const HomePublications: FC<Props> = ({ url = "publication/get-all-publications", userSSR }) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<AddPublic>();
-  const { addPublication } = usePublications();
+  const { publications, isLoading, addPublication, deletePublication, mutatePublications } = usePublications(url);
+  const { user } = useUser();
+  const router = useRouter();
+
   const showModalEditPublication = useAtomValue(stateModalPublication);
   const showModalEditProfile = useAtomValue(stateModalProfile);
   const [isLoadingAddPublication, setIsLoadingAddPublication] = useState(false);
   const [valueImage, setValueImage] = useState<any>(null);
-  const { query } = useRouter();
 
   let windowWidth = window.innerWidth;
 
   const onPublic = async ({ description, image, user }: AddPublic) => {
     setIsLoadingAddPublication(true);
+  
     const { hasError, message } = await addPublication(description, image, user);
+
     if (hasError) {
       return Swal.fire({
         icon: 'error',
@@ -54,8 +56,9 @@ const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR })
       icon: 'success',
       title: message,
     });
-    setIsLoadingAddPublication(false);
+
     reset();
+    setIsLoadingAddPublication(false);
     setValueImage(null);
   };
 
@@ -140,13 +143,16 @@ const HomePublications: FC<Props> = ({ publications, isLoading, user, userSSR })
         <div className={styles.publications__view}>
           {isLoading && windowWidth > 600 && [1, 2, 3].map(() => <LoaderPublications key={crypto.randomUUID()} />)}
           {isLoading && windowWidth < 450 && [1, 2, 3].map(() => <LoaderPublicationsPhone key={crypto.randomUUID()} />)}
-          {!isLoading && publications.publications.length > 0 ?
+          {!isLoading && publications.publications?.length > 0 ?
             publications.publications.map((publication: any) => (
-              <Publication key={publication._id} publication={publication} />
+              <Publication key={publication._id} 
+                publication={publication} 
+                deletePublication={deletePublication}
+                mutatePublications={mutatePublications} />
             ))
             :
             <div className={styles.publications__notfound}>
-               <p>No se encontraron resultados con la búsqueda: {query.value}</p> 
+               <p>No se encontraron resultados con la búsqueda: {router.query.value}</p> 
                <Image src="/home/publicationsnot.png" alt="NotFound" width={230} height={270} />
             </div>
           }

@@ -1,11 +1,9 @@
 import { GetServerSideProps } from "next";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import { useAtomValue, useUpdateAtom } from "jotai/utils";
+import { useUpdateAtom } from "jotai/utils";
 
 //store
 import { stateModalProfile } from "store/stateModalProfile";
-import { infoUser } from "store/stateUser";
 
 //components
 import ProfileLayout from "components/layouts/Home/ProfileLayout";
@@ -13,28 +11,24 @@ import HomePublications from "components/homeUI/HomePublications";
 import Avatar from "components/Avatar";
 import LoaderProfile from "../../../components/loader/LoaderProfile";
 import EditableField from "components/EditableField";
+
 //utils
 import { dateUser } from "utils/dateInfo";
-import { useSWRPublications, useSWRUser } from "hooks";
 import { useUploadAvatar } from "hooks/user/mutations/useUploadAvatar";
 import { useChangeFullName } from "hooks/user/mutations/useChangeFullName";
 import { useChangePhone } from "hooks/user/mutations/useChangePhone";
 
 //services
-
 import findingPetsApi from "api/findingPetsApi";
 
 import styles from "styles/home/Profile.module.css";
+import { useUser } from "hooks";
 
 const ProfilePage = ({ userSSR }: any) => {
+  const { user } = useUser();
   const { query } = useRouter();
-  const userAtom = useAtomValue(infoUser);
-  const { publications, isLoading } = useSWRPublications(
-    `/publication/get-my-publication?userId=${query.id}`
-  );
-  const { user } = useSWRUser(`/user/get-user?userId=${userAtom?._id}`);
   const setShowModalEditUser = useUpdateAtom(stateModalProfile);
-
+  
   const { uploadAvatar } = useUploadAvatar();
   const { changeFullName } = useChangeFullName();
   const { changePhone } = useChangePhone();
@@ -44,14 +38,14 @@ const ProfilePage = ({ userSSR }: any) => {
     return null;
   }
 
-  const userData = user.user._id === userSSR._id ? user.user : userSSR;
+  const userData = user._id === userSSR._id ? user : userSSR;
 
   return (
     <ProfileLayout title={`Perfil | ${userData.fullname}`}>
       <div className={styles.profile}>
         <div className={styles.hero}>
           <div className={styles.data}>
-            {isLoading ? (
+            {!user ? (
               <LoaderProfile />
             ) : (
               <Avatar
@@ -100,16 +94,14 @@ const ProfilePage = ({ userSSR }: any) => {
                 onConfirm={changePhone}
               />
               <li>
-                <i className="fa-solid fa-bullhorn"></i> Se unió{" "}
+                <i className="fa-solid fa-bullhorn"></i> Se unió
                 {dateUser(userSSR?.createdAt)}
               </li>
             </ul>
           </div>
 
           <HomePublications
-            publications={publications}
-            isLoading={isLoading}
-            user={user.user}
+            url={`publication/get-my-publication?userId=${query.id}`}
             userSSR={userSSR}
           />
         </div>

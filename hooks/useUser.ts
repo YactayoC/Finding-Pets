@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAtomValue } from 'jotai';
-import { useUpdateAtom } from 'jotai/utils';
+import { useAtom } from 'jotai';
 
 
 import { infoUser } from 'store/stateUser';
@@ -17,8 +16,7 @@ type ResponseData = {
 
 export const useUser = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const setUser = useUpdateAtom(infoUser);
-  const user = useAtomValue(infoUser);
+  const [user, setUser] = useAtom(infoUser);
 
   useEffect(() => {
     setIsLoading(true);
@@ -47,6 +45,8 @@ export const useUser = () => {
   const login = async (email: string, password: string): Promise<ResponseData> => {
     try {
       const data = await loginUserDB(email, password);
+      localStorage.setItem('token', data.token)
+      setUser(data.user);
       return { hasError: false, data: data.user, message: data.message, token: data.token };
     } catch (error) {
       return { hasError: true, message: error.response.data.message };
@@ -73,14 +73,15 @@ export const useUser = () => {
 
   const updateProfile = async ( id: string, imageProfile: any, fullname: string, phone: string, password: string, passwordNew: string): Promise<ResponseData> => {
     try {
-      let secure_url;
+      let secure_url = "";
       if (imageProfile.length === 0) {
-        secure_url = user?.profile;
+        secure_url = user?.profile!;
       } else {
-        const resp = await uploadImage(imageProfile[0]);
-        secure_url = resp.secure_url;
+        const data = await uploadImage(imageProfile[0]);
+        secure_url = data?.secure_url!;
       }
       const data = await updateUserDB(id, secure_url, fullname, phone, password, passwordNew);
+      setUser(data.user);
       return { hasError: false, data: data.user, message: data.message };
     } catch (error) {
       return { hasError: true, message: error.response.data.message };

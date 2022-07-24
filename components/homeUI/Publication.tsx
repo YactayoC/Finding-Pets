@@ -16,6 +16,8 @@ import { useComments } from 'hooks/useComment';
 
 type Props = {
   publication: TPublication | any;
+  deletePublication: any;
+  mutatePublications: any;
 };
 
 type AddComment = {
@@ -24,11 +26,10 @@ type AddComment = {
   comment: string;
 };
 
-const Publication: FC<Props> = ({ publication }) => {
+const Publication: FC<Props> = ({ publication, deletePublication, mutatePublications }) => {
   const [isVisibleOptionsPublication, setIsVisibleOptionsPublication] = useState<boolean>(false);
   const setShowModalEditPublication = useUpdateAtom(stateModalPublication);
-  const { deletePublication } = usePublications();
-  const { addComment, deleteComment } = useComments();
+  const { addComment } = useComments();
   const [showComments, setShowComments] = useState(false);
   const { user } = useUser();
   const { register, handleSubmit, formState: { errors }, reset } = useForm<AddComment>({
@@ -40,6 +41,7 @@ const Publication: FC<Props> = ({ publication }) => {
 
   const onCommentPublication = async ({ idPublication, idUser, comment }: AddComment) => {
     await addComment(idPublication, idUser, comment);
+    mutatePublications();
     reset();
   };
 
@@ -65,15 +67,9 @@ const Publication: FC<Props> = ({ publication }) => {
           icon: 'success',
           title: message,
         });
-      } else {
       }
     });
   };
-
-  // const onDeleteComment = async(idComment: string, idPublication: string) => {
-  //   const resp = await deleteComment(idComment, idPublication);
-  //   console.log(resp)
-  // }
 
   if (!user) {
     return null;

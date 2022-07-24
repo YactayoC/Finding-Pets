@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { Provider as ProviderJotai } from "jotai";
 import { SWRConfig, SWRConfiguration } from "swr";
+import axios from "axios";
 
 import RequireAuth from "components/authComponent/RequireAuth";
 
@@ -15,7 +16,7 @@ type Props = {
 } & AppProps;
 
 const swrConfig: SWRConfiguration = {
-  fetcher: (resource, init) => fetch(resource, init).then((res) => res.json()),
+  fetcher: (resource, init) => axios.get(resource, init).then((res) => res.data),
 };
 
 function MyApp({ Component, pageProps }: Props) {

@@ -2,9 +2,7 @@ import dbConnect from 'database/db';
 import { Publication } from 'models';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-type Data = {
-  message: string;
-};
+type Data = { message: string };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
@@ -30,7 +28,7 @@ const addPublication = async (req: NextApiRequest, res: NextApiResponse<Data>) =
     publication.user = user;
     publication.images![0] = secure_url;
     await publication.save({ validateBeforeSave: true });
-    return res.status(201).json({ message: 'Publicación realizada' });
+    return res.status(201).json({ message: 'Publicación realizada'});
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });
