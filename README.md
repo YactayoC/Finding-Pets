@@ -34,6 +34,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Authors ✒️
 - **Sebastián Yactayo** - _aporte_ - [YactayoC](https://github.com/YactayoC)
-- **Sebastián Chaquila** - _aporte_ - [CodeSCH](https://github.com/CodeSCH)
 - **Kennet de la Cruz** - _aporte_ - [KennethHernan](https://github.com/KennethHernan)
-- **Cruces Leonardo** - _aporte_ - [It's Me Leandro](https://github.com/ItsMeLeonardo)
+- **Cruces Leonardo** - _aporte_ - [It's Me Leonardo](https://github.com/ItsMeLeonardo)
