@@ -23,16 +23,16 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Preview 📷
-![image](https://user-images.githubusercontent.com/89726167/180655761-0db26afd-b54f-4dc5-9f75-df8d017b50d5.png)
+![image](https://user-images.githubusercontent.com/89726167/180655946-b107ef5d-1eb7-4c27-b044-e4f73ab65c0d.png)
 ![image](https://user-images.githubusercontent.com/89726167/175652537-14eb7065-2806-464d-be8b-df43ab6fdbc2.png)
 ![image](https://user-images.githubusercontent.com/89726167/175652606-77038da4-c5f1-4870-849d-966391b6eb8c.png)
-![image](https://user-images.githubusercontent.com/89726167/175652706-50a3f708-a6ba-4cf2-b600-a1e46604754b.png)
-![image](https://user-images.githubusercontent.com/89726167/175652811-1178aebc-e6f6-4a9d-b689-40a0a21caf90.png)
-![image](https://user-images.githubusercontent.com/89726167/175652845-03ee3326-90c8-4b27-95b3-be523555ae60.png)
-![image](https://user-images.githubusercontent.com/89726167/175654242-4a9a862d-a00b-4ad2-9fba-a41013c6fece.png)
+![image](https://user-images.githubusercontent.com/89726167/180656020-f0621656-5edd-46d4-8af7-32d0de5c52e7.png)
+![image](https://user-images.githubusercontent.com/89726167/180656051-97316dc3-238a-4310-9076-bac1f036bb64.png)
+![image](https://user-images.githubusercontent.com/89726167/180656057-99e498f9-bd3d-4914-ad0b-393ddbdd6503.png)
+![image](https://user-images.githubusercontent.com/89726167/180656069-79d287dd-2e29-401c-b5f5-496bf9983ad3.png)
+![image](https://user-images.githubusercontent.com/89726167/180656088-c78d4923-b0a7-42fa-9f54-630064048b70.png)
 
 ## Authors ✒️
 - **Sebastián Yactayo** - _aporte_ - [YactayoC](https://github.com/YactayoC)
-- **Sebastián Chaquila** - _aporte_ - [CodeSCH](https://github.com/CodeSCH)
 - **Kennet de la Cruz** - _aporte_ - [KennethHernan](https://github.com/KennethHernan)
-- **Cruces Leonardo** - _aporte_ - [It's Me Leandro](https://github.com/ItsMeLeonardo)
+- **Cruces Leonardo** - _aporte_ - [It's Me Leonardo](https://github.com/ItsMeLeonardo)
