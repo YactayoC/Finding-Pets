@@ -2,7 +2,6 @@ import { addCommentDB, deleteCommentDB } from 'services/comments';
 
 type ResponseData = {
   hasError: boolean;
-  data?: any;
   message?: string;
 };
 

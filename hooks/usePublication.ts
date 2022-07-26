@@ -6,7 +6,6 @@ import { TPublication } from 'types';
 
 type ResponseData = {
   hasError: boolean;
-  data?: any;
   message?: string;
 };
 
@@ -18,7 +17,7 @@ export const usePublications = (url: string) => {
       const data = await uploadImage(image[0]);
       const secure_url = data?.secure_url!;
       const resp = await addPublicationDB( description, secure_url, user );
-      mutatePublications();
+      await mutatePublications();
       return { hasError: false, message: resp.message};
     } catch (error) {
       return { hasError: true, message: error.response.data.message };
@@ -37,7 +36,7 @@ export const usePublications = (url: string) => {
       }
 
       const resp = await updatePublicationDB(id, description, state, imgUpdate );
-      mutatePublications();
+      await mutatePublications();
       return { hasError: false, message: resp.message };
     } catch (error) {
       return { hasError: true, message: error.response.data.message };
@@ -47,7 +46,7 @@ export const usePublications = (url: string) => {
   const deletePublication = async (id: string): Promise<ResponseData> => {
     try {
       const resp = await deletePublicationDB(id);
-      mutatePublications();
+      await mutatePublications();
       return { hasError: false, message: resp.message };
     } catch (error) {
       return { hasError: true, message: error.response.data.message };

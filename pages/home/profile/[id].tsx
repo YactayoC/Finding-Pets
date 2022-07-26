@@ -5,6 +5,9 @@ import { useUpdateAtom } from "jotai/utils";
 //store
 import { stateModalProfile } from "store/stateModalProfile";
 
+// hooks
+import { useUser } from "hooks";
+
 //components
 import ProfileLayout from "components/layouts/Home/ProfileLayout";
 import HomePublications from "components/homeUI/HomePublications";
@@ -17,12 +20,13 @@ import { dateUser } from "utils/dateInfo";
 import { useUploadAvatar } from "hooks/user/mutations/useUploadAvatar";
 import { useChangeFullName } from "hooks/user/mutations/useChangeFullName";
 import { useChangePhone } from "hooks/user/mutations/useChangePhone";
+import { TUser } from '../../../types/user';
 
 //services
 import findingPetsApi from "api/findingPetsApi";
 
 import styles from "styles/home/Profile.module.css";
-import { useUser } from "hooks";
+
 
 const ProfilePage = ({ userSSR }: any) => {
   const { user } = useUser();

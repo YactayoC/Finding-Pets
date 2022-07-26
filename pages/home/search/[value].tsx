@@ -6,9 +6,9 @@ import HomeRandom from "components/homeUI/HomeRandom";
 import HomeOptions from "components/homeUI/HomeOptions";
 import { useUser } from "hooks";
 
-const ResultPage = ({ query }: any) => {
+const ResultPage = ({ query }: {query: {value: string}}) => {
   const { user } = useUser();
-
+  
   if (!user) {
     return null;
   }

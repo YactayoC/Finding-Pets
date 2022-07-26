@@ -11,7 +11,7 @@ export const uploadImage = async (
   formData.append("file", file);
 
   try {
-    const {data} = await axios.post<CloudinaryResponse>(cloudUrl!, formData);
+    const { data } = await axios.post<CloudinaryResponse>(cloudUrl!, formData);
     return data;
   } catch (error) {
     console.log(error);

@@ -7,7 +7,7 @@ import { useUser } from 'hooks';
 
 import styles from 'styles/Auth.module.css';
 
-const ConfirmPage = ({ token }: any) => {
+const ConfirmPage = ({ token }: {token: string}) => {
   const { confirmAccount } = useUser();
   const [message, setMessage] = useState({
     isConfirmed: false,

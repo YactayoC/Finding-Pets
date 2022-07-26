@@ -13,7 +13,7 @@ type PublicationUpdate = {
   state: string;
 };
 
-const ModalEditPublication = ({updatePublication} : any) => {
+const ModalEditPublication = ({updatePublication}: {updatePublication: Function} ) => {
   const [showModalEditPublication, setShowModalEditPublication] = useAtom(stateModalPublication);
   const { register, handleSubmit, formState: { errors } } = useForm<PublicationUpdate>({
     defaultValues: {

@@ -16,8 +16,8 @@ import { useComments } from 'hooks/useComment';
 
 type Props = {
   publication: TPublication | any;
-  deletePublication: any;
-  mutatePublications: any;
+  deletePublication: Function;
+  mutatePublications: Function;
 };
 
 type AddComment = {
@@ -45,7 +45,7 @@ const Publication: FC<Props> = ({ publication, deletePublication, mutatePublicat
     reset();
   };
 
-  const onDeletePublication = async (id: any) => {
+  const onDeletePublication = async (id: string) => {
     Swal.fire({
       title: '¿Seguro que quieres eliminar tu publicación?',
       showCancelButton: true,
