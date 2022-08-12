@@ -8,6 +8,7 @@ export default function EditableField({
   onCancel,
   icon,
   onConfirm,
+  sameUser,
   ...props
 }: EditableFieldProps) {
   const [isEditing, setIsEditing] = useState(false);
@@ -73,7 +74,7 @@ export default function EditableField({
         <p className={style.input}>{newValue || value}</p>
       )}
       <div className={style.options}>
-        {!isEditing && (
+        {!isEditing && sameUser && (
           <button className={style.edit_button} onClick={enabledEditing}>
             <i className="fa-solid fa-pen"></i>
           </button>

@@ -1,18 +1,18 @@
-import { useState, FormEvent, MouseEvent } from "react";
-import Avvvatars from "avvvatars-react";
+import { useState, FormEvent, MouseEvent } from 'react';
+import Avvvatars from 'avvvatars-react';
 
-import { AvatarProps, AvatarSize } from "components/Avatar/types";
-import styles from "components/Avatar/avatar.module.css";
+import { AvatarProps, AvatarSize } from 'components/Avatar/types';
+import styles from 'components/Avatar/avatar.module.css';
 
 const getAvatarSize = (size: AvatarSize) => {
   switch (size) {
-    case "small":
+    case 'small':
       return 48;
-    case "normal":
+    case 'normal':
       return 96;
-    case "medium":
+    case 'medium':
       return 128;
-    case "large":
+    case 'large':
       return 150;
   }
 };
@@ -30,12 +30,13 @@ export default function Avatar({
   email: name,
   alt,
   onConfirmUpload,
+  sameUser,
   ...props
 }: AvatarProps) {
   const [error, setError] = useState(false);
   const [preview, setPreview] = useState<PreviewState | null>(null);
 
-  const defaultSize = size || "normal";
+  const defaultSize = size || 'normal';
   const avvvatarsSize = getAvatarSize(defaultSize);
 
   const avatarSrc = preview?.url || src;
@@ -73,27 +74,18 @@ export default function Avatar({
 
   return (
     <picture className={`${styles.container} ${styles[defaultSize]}`}>
-      {editable && !waitingForConfirm && (
+      {editable && !waitingForConfirm && sameUser && (
         <label className={styles.actions} role="button">
           <b> {/* this is for align to right using flex :c*/} </b>
           <span className={styles.iconButton}>
             <i className="fa-solid fa-camera"></i>
-            <input
-              type="file"
-              hidden
-              accept="image/*"
-              onInput={handleImageLoad}
-            />
+            <input type="file" hidden accept="image/*" onInput={handleImageLoad} />
           </span>
         </label>
       )}
       {editable && waitingForConfirm && (
         <div className={styles.actions}>
-          <button
-            className={`${styles.iconButton} ${styles.cancelButton}`}
-            type="button"
-            onClick={handleCancelUpload}
-          >
+          <button className={`${styles.iconButton} ${styles.cancelButton}`} type="button" onClick={handleCancelUpload}>
             <i className="fa-solid fa-xmark"></i>
           </button>
           <button
@@ -108,13 +100,7 @@ export default function Avatar({
       {error ? (
         <Avvvatars value={name} size={avvvatarsSize} />
       ) : (
-        <img
-          src={avatarSrc}
-          {...props}
-          alt={alt}
-          className={styles.avatarImg}
-          onError={handleImageError}
-        />
+        <img src={avatarSrc} {...props} alt={alt} className={styles.avatarImg} onError={handleImageError} />
       )}
     </picture>
   );

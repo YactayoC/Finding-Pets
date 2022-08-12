@@ -32,7 +32,7 @@ const ProfilePage = ({ userSSR }: any) => {
   const { user } = useUser();
   const { query } = useRouter();
   const setShowModalEditUser = useUpdateAtom(stateModalProfile);
-  
+
   const { uploadAvatar } = useUploadAvatar();
   const { changeFullName } = useChangeFullName();
   const { changePhone } = useChangePhone();
@@ -59,6 +59,7 @@ const ProfilePage = ({ userSSR }: any) => {
                 size="large"
                 email={userData.email}
                 onConfirmUpload={uploadAvatar}
+                sameUser={user._id === userSSR._id ? true : false}
               />
             )}
 
@@ -82,6 +83,7 @@ const ProfilePage = ({ userSSR }: any) => {
                 value={userData.fullname}
                 icon={<i className="fa-solid fa-user"></i>}
                 onConfirm={changeFullName}
+                sameUser={user._id === userSSR._id ? true : false}
               />
               <EditableField
                 value={userData.email}
@@ -90,12 +92,14 @@ const ProfilePage = ({ userSSR }: any) => {
                 onConfirm={async () => {
                   throw new Error("error");
                 }}
+                sameUser={user._id === userSSR._id ? true : false}
               />
               <EditableField
                 value={userData.phone}
                 icon={<i className="fa-solid fa-phone"></i>}
                 type="tel"
                 onConfirm={changePhone}
+                sameUser={user._id === userSSR._id ? true : false}
               />
               <li>
                 <i className="fa-solid fa-bullhorn"></i> Se unió
