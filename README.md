@@ -1,6 +1,6 @@
 # Finding Pets 🐕
 
-A project focused on the search for lost pets through publications and locality filters.
+Finding Pets is a small social network project made in nextJS, with the purpose of finding lost pets through publications, besides being able to comment on publications and customize your profile. Jotai was used for status management, and JWT was used for user authentication.
 
 ## Getting Started 🚀
 
