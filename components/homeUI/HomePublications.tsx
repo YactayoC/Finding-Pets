@@ -43,7 +43,7 @@ const HomePublications: FC<Props> = ({ url = "publication/get-all-publications",
 
   const onPublic = async ({ description, image, user }: AddPublic) => {
     setIsLoadingAddPublication(true);
-  
+
     const { hasError, message } = await addPublication(description, image, user);
 
     if (hasError) {
@@ -152,8 +152,17 @@ const HomePublications: FC<Props> = ({ url = "publication/get-all-publications",
             ))
             :
             <div className={styles.publications__notfound}>
-               <p>No se encontraron resultados con la búsqueda: {router.query.value}</p> 
-               <Image src="/home/publicationsnot.png" alt="NotFound" width={230} height={270} />
+              {router.query.value ? (
+                  <>
+                    <p>No se encontraron resultados con la búsqueda: {router.query.value}</p>
+                    <Image src="/home/publicationsnot.png" alt="NotFound" width={230} height={270} />
+                  </>
+              ): (
+                <>
+                  <p>Aun no hay publicaciones</p>
+                  <Image src="/home/publicationsnot.png" alt="NotFound" width={230} height={270} />
+                </>
+              )}
             </div>
           }
         </div>
